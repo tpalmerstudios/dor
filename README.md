@@ -1,10 +1,10 @@
 # networkProjects
-Simply walking through K&Rs "The C Programming Language"
-Going a little off it to expand my mind. Causing a few issues
-Hopefully. I figure this out soon
+A simple conglomeration of random things I've worked on.
+Starting with some C and now C++. I've started with K&R. 
+Now I'm using C++ by Tony Gaddis.  
 
-Let me know if you have any recomendations for a new C developer
+&nbsp;
 
-A few weeks later and I'm going into C++. Working on a database of people.
-Basically enter a persons name and any details. Think of facebook minus the interaction.
-Storage and Search and Display of these files.
+I'll try to actually update regularly now. And hopefully
+move on to bigger projects as I understand bigger concepts.
+
