@@ -1,7 +1,5 @@
 #include <stdio.h>
 
-// move input to output showing escape characters
-
 main ()
 {
 	int c = 0;
