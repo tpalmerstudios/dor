@@ -1,14 +1,13 @@
 #include <stdio.h>
 
-// Count lines inputted
-
-main ()
+int main ()
 {
-	int c, nl;
+	int c;
+	int nl = 0;
 
-	nl = 0;
 	while ((c = getchar ()) != EOF)
 		if (c == '\n')
 			++nl;
-	printf ("%d Lines\n", nl);
+	printf ("%d Lines: ", nl);
+	return 0;
 }

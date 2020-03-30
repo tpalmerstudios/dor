@@ -1,7 +1,5 @@
 #include <stdio.h>
 
-// Count whitespace inputted
-
 main ()
 {
 	int c, nl, space, tab;
