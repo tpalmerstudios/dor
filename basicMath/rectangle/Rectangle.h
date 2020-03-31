@@ -4,18 +4,14 @@
 class Rectangle
 {
 	private:
-			double width;
-			double length;
+			double width, length;
 	public:
-			// Negative width
 			class negativeWidth
 					{ };
 
-			// Negative length
 			class negativeLength
 					{ };
 
-			// Default constructor
 			Rectangle ()
 					{ width = 0.0; length = 0.0; }
 

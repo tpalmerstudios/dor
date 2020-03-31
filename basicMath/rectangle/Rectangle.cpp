@@ -2,7 +2,7 @@
 
 void Rectangle::setWidth ( double w )
 {
-		if (w >= 0)
+		if (w > 0)
 				width = w;
 		else
 				throw negativeWidth();
@@ -10,7 +10,7 @@ void Rectangle::setWidth ( double w )
 
 void Rectangle::setLength (double len)
 {
-		if (len >= 0)
+		if (len > 0)
 				length = len;
 		else
 				throw negativeLength();

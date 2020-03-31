@@ -2,11 +2,9 @@
 #include "Rectangle.h"
 using namespace std;
 
-int main()
+int main ()
 {
-		double width;
-		double length;
-
+		double width, length;
 		Rectangle newRectangle;
 
 		cout << "Enter the rectangle's width: ";

@@ -1,7 +1,6 @@
 #include <iostream>
 #include <cmath>
 #include <iomanip> // setprecision
-
 using namespace std;
 
 const double PI = 3.14159;

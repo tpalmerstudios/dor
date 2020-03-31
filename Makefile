@@ -17,7 +17,6 @@ all:
 	$(CXX) exampleQueue.cpp intQueue.cpp -o exampleQueue; \
 	cd ../../wordManips; \
 	$(CC) charCount.c -o charCount; \
-	$(CC) charCount2.c -o charCount2; \
 	$(CC) digitCounter.c -o digitCounter; \
 	$(CC) i2o.c -o i2o; \
 	$(CC) lineCount.c -o lineCount; \
@@ -32,7 +31,6 @@ clean:
 	-rm basicMath/circle;
 	-rm basicMath/rectangle/getRect;
 	-rm wordManips/charCount;
-	-rm wordManips/charCount2;
 	-rm wordManips/digitCounter;
 	-rm wordManips/i2o;
 	-rm wordManips/lineCount
