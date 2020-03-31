@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-main ()
+int main ()
 {
 	int c, nl, space, tab;
 
@@ -18,4 +18,5 @@ main ()
 			++space;
 	}
 	printf ("%d Lines %d Tabs %d Spaces\n", nl, tab, space);
+	return 0;
 }

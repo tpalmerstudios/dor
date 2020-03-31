@@ -2,7 +2,7 @@
 
 // move input to output without excess spaces
 
-main ()
+int main ()
 {
 	int c, prev = 0;
 
@@ -12,5 +12,6 @@ main ()
 			putchar ( c );
 		prev = c;
 	}
+	return 0;
 }
 
