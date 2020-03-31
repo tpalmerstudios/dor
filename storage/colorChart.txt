@@ -1,0 +1,16 @@
+Eye Color
+Green	G
+Brown	b
+Blue	B
+Hazel	h
+Amber	a
+Gray	g
+Red		r
+
+Hair Color
+Black	l
+Brown	w
+Blonde	o
+Red		r
+Gray	g
+White	w
