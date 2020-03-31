@@ -4,17 +4,17 @@ PWD = /home/user/networkProjects
 
 
 all:
-	$(CC) $(PWD)/basicMath/tempConversion.c -o $(PWD)/basicMath/tempConversion
-	$(CXX) $(PWD)/basicMath/circle.cpp -o $(PWD)/basicMath/circle
-	$(CXX) $(PWD)/basicMath/rectangle/getRect.cpp $(PWD)/basicMath/rectangle/Rectangle.cpp -o $(PWD)/basicMath/rectangle/getRect
-	cd ../../dataTemplate/
-	$(CXX) example.cpp -o example
-	cd employee/
-	$(CXX) employee.cpp -o employee
-	cd ../people/
-	$(CXX) people.cpp -o people
-	cd ../queue/
-	$(CXX) exampleQueue.cpp intQueue.cpp -o exampleQueue
+	cd $(PWD)/basicMath/; \
+	$(CC) tempConversion.c -o tempConversion; \
+	$(CXX) circle.cpp -o circle; \
+	cd rectangle; \
+	$(CXX) getRect.cpp Rectangle.cpp -o getRect; \
+	cd ../../dataTemplate/; \
+	$(CXX) example.cpp -o example; \
+	$(CXX) people.cpp -o people; \
+	$(CXX) employee.cpp -o employee; \
+	cd queue/; \
+	$(CXX) exampleQueue.cpp intQueue.cpp -o exampleQueue;
 
 clean:
 	-rm basicMath/tempConversion

@@ -3,7 +3,7 @@
 // Print Fahrenheit to Celsius Conversion table.
 // 0 - 300
 
-main()
+int main()
 {
 	float fahr, celsius, kelvin;
 	int lower, upper, step;
