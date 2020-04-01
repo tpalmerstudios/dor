@@ -1,4 +1,5 @@
 #include <string>
+#include <vector>
 #include <iostream>
 #ifndef PEOPLE_H
 #define PEOPLE_H
@@ -6,6 +7,52 @@
 class People
 {
 private:
+// ID
+		const float id;
+// First Name
+		string fName;
+// Middle Name
+		string mName;
+// Last Name
+		string lName;
+// Alternate ID Vector
+		vector<float> altID;
+// Alias Vecors
+		vector<string> alias;
+// DOB
+		string dob;
+// Date Vector
+		vector<string> date;
+		vector<string> dateNotes;
+// Height
+		int height;
+// Weight
+		int weight;
+// Race
+		int race;
+// Complexion
+		string complexion;
+// Body Markings
+		vector<string> markings;
+// Eye Color
+		char eyeColor;
+// Hair Color
+		char hairColor;
+// Hair Notes
+		string hairNotes;
+// Relationship Name Vector
+// Relationship ID Vector
+// Car Vector
+// Car Notes Vector
+// Home Vector
+// Home Notes Vector
+// Workplace Vector
+// Occupation Vector
+// Income Vector
+// Job Note Vector
+// File Vector
+// File Vector Notes
+
 		// Birth Detais
 		string fName;
 		string mName;
@@ -30,6 +77,7 @@ private:
 		// Work & Income
 
 public:
+		
 		// accessor templates
 };
 #endif

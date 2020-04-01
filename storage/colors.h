@@ -57,3 +57,14 @@ string hairString (char cColor)
 		}
 		return sColor;
 }
+string race (int cRace)
+{
+		string sRace;
+		switch (cRace)
+		{
+				//
+				default:
+						sRace = "N/A";
+		}
+		return sRace;
+}
