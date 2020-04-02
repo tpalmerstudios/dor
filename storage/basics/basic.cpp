@@ -96,9 +96,17 @@ int savePerson (Person toSave)
 		std::string regID = (R"(#\[)");
 		regID.append (sID);
 		regID.append (R"(\])");
-		// std::regex currentID = regID;
+		std::regex currentID;
+		currentID.assign (regID);
 
 		dataFile.open (filename, std::ios::binary);
+		// Search through file for regex - get cursor
+		// If it exists search for next ID - get cursor
+		// Delete all items between the two cursor points
+		// Replace with updated data string at first cursor point
+
+		// If it doesnt exist, place at the end of the file
+
 		dataFile.seekg (cursor);
 		dataFile << "#[" << toSave.getID () << "]" << toSave.getFName() 
 				<< ";" << toSave.getMName() << ";" << toSave.getLName() << ";\n";
