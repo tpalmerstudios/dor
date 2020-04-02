@@ -26,15 +26,16 @@ void Person::setID (std::string filename)
 		dataFile.open (filename, std::ios::ate | std::ios::binary);
 		position = dataFile.tellg ();
 		position -= 10;
+		dataFile.seekg (position);
+		dataFile.read (&buffer[0], 10);
 		while (!std::regex_search (buffer, idReg))
 		{
+				position -= 12;
 				dataFile.seekg (position);
 				dataFile.read (&buffer[0], 10);
-				position -= 11;
 		}
 		dataFile.close ();
-		id = std::stof (buffer.substr (2, 7)) + 1;
-
+		id = std::stof (buffer.substr (3, 6 )) + 1;
 }
 float Person::getID ()
 {

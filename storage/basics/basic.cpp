@@ -13,26 +13,41 @@ std::string filename = "logfile.txt";
 
 int main ()
 {
-		/*Person johny;
-		johny.setID (filename);
-		float exampleID = johny.getID ();*/
-		callsSet ();
-		return 0;
-}
-int callsSet ()
-{
-		Person johny;
-		johny.setID (filename);
-		float exampleID = johny.getID ();
-		std::cout << exampleID << std::endl;
+		char input;
+		while (1)
+		{
+				std::cout << "Main Menu\n\n";
+				std::cout << "1) New Person\n";
+				std::cout << "2) View Person\n";
+				std::cout << "3) Delete Person\n";
+				std::cout << "4) Search Person\n";
+				std::cin >> input;
+				switch (input)
+				{
+						case '1':
+								newPerson ();
+								break;
+				}
+		}
 		return 0;
 }
 int newPerson ()
 {
 		Person chosen;
+		std::string fName;
+		std::string mName;
+		std::string lName;
 		int cursor = 0;
-		// Generate an ID based on previous last item
-		// Ask questions for each item
+		chosen.setID (filename);
+		std::cout << "First Name: ";
+		std::cin >> fName;
+		chosen.setFName (fName);
+		std::cout << "Middle Name: ";
+		std::cin >> mName;
+		chosen.setMName (mName);
+		std::cout << "Last Name: ";
+		std::cin >> lName;
+		chosen.setLName (lName);
 		// Place cursor at end
 		bool failure = savePerson (chosen, cursor);
 		return !failure;

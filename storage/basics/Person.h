@@ -11,15 +11,6 @@ class Person
 				float id;
 
 		public:
-				Person ()
-				{
-						fName = "";
-						mName = "";
-						lName = "";
-						std::cout << "Constructed\n";
-				}
-				~Person ()
-				{}
 				void setFName (std::string);
 				void setMName (std::string);
 				void setLName (std::string);
