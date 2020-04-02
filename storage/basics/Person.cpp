@@ -37,8 +37,3 @@ void Person::setID (std::string filename)
 		dataFile.close ();
 		id = std::stof (buffer.substr (3, 6 )) + 1;
 }
-float Person::getID ()
-{
-		return id;
-}
-

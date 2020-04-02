@@ -15,6 +15,14 @@ class Person
 				void setMName (std::string);
 				void setLName (std::string);
 				void setID (std::string);
-				float getID ();
+				float getID ()
+				{ return id; }
+				std::string getFName ()
+				{ return fName; }
+				std::string getMName ()
+				{ return mName; }
+				std::string getLName ()
+				{ return lName; }
+
 };
 #endif

@@ -1,12 +1,14 @@
 #include <iostream>
 #include <string>
+#include <regex>
+#include <fstream>
 #include "Person.h"
 
 int newPerson ();
 int openPerson (int);
 int editPerson (Person, int);
 int deletePerson (int);
-int savePerson (Person, int);
+int savePerson (Person);
 int callsSet ();
 
 std::string filename = "logfile.txt";
@@ -49,7 +51,7 @@ int newPerson ()
 		std::cin >> lName;
 		chosen.setLName (lName);
 		// Place cursor at end
-		bool failure = savePerson (chosen, cursor);
+		bool failure = savePerson (chosen);
 		return !failure;
 }
 
@@ -71,7 +73,7 @@ int editPerson (Person chosen, int cursor)
 		// Remove all from start of this data to start of next
 		//Place cursor in file correctly
 		// Save entire Person to file at once
-		bool failure = savePerson (chosen, cursor);
+		bool failure = savePerson (chosen);
 		return !failure;
 }
 
@@ -84,11 +86,22 @@ int deletePerson (int deleteID)
 		return 0;
 }
 
-int savePerson (Person toSave, int cursor)
+int savePerson (Person toSave)
 {
-		// Open file
-		// Place cursor
-		// Place each piece of data in file
+		std::fstream dataFile;
+		std::string sID = std::to_string (toSave.getID ());
+		sID = sID.substr (0, 6);
+		int cursor;
+
+		std::string regID = (R"(#\[)");
+		regID.append (sID);
+		regID.append (R"(\])");
+		// std::regex currentID = regID;
+
+		dataFile.open (filename, std::ios::binary);
+		dataFile.seekg (cursor);
+		dataFile << "#[" << toSave.getID () << "]" << toSave.getFName() 
+				<< ";" << toSave.getMName() << ";" << toSave.getLName() << ";\n";
 
 		return 0;
 }
