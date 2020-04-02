@@ -28,12 +28,17 @@ void Person::setID (std::string filename)
 		position -= 10;
 		dataFile.seekg (position);
 		dataFile.read (&buffer[0], 10);
-		while (!std::regex_search (buffer, idReg))
+		std::cout << "\nPosition: " << position << "\n";
+
+		while ((!std::regex_search (buffer, idReg) && position >= 0))
 		{
-				position -= 12;
+				std::cout << "\nPosition: " << position << "\n";
+				position -= 1;
 				dataFile.seekg (position);
 				dataFile.read (&buffer[0], 10);
+				if (position == 0)
+						buffer = "#[000000]";
 		}
 		dataFile.close ();
-		id = std::stof (buffer.substr (3, 6 )) + 1;
+		id = std::stof (buffer.substr (2, 6 )) + 1;
 }
