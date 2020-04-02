@@ -1,33 +1,36 @@
 #include <iostream>
-#include <vector>
 #include <string>
 #include "Person.h"
-using namespace std;
 
 int newPerson ();
 int openPerson (int);
 int editPerson (Person, int);
 int deletePerson (int);
 int savePerson (Person, int);
+int callsSet ();
 
-
-string filename;
+std::string filename = "logfile.txt";
 
 int main ()
 {
+		/*Person johny;
+		johny.setID (filename);
+		float exampleID = johny.getID ();*/
+		callsSet ();
+		return 0;
+}
+int callsSet ()
+{
 		Person johny;
-		float exampleID;
-		johny.setID ("logfile.txt");
-		cout << "Set id" << endl;
-		exampleID = johny.getID ();
-		cout << "Got id" << endl;
-		cout << exampleID << endl;
+		johny.setID (filename);
+		float exampleID = johny.getID ();
+		std::cout << exampleID << std::endl;
 		return 0;
 }
 int newPerson ()
 {
 		Person chosen;
-		int cursor;
+		int cursor = 0;
 		// Generate an ID based on previous last item
 		// Ask questions for each item
 		// Place cursor at end
@@ -38,7 +41,7 @@ int newPerson ()
 int openPerson (int openID)
 {
 		Person search;
-		int cursor;
+		int cursor= 0;
 		// Look through file
 		// retrieve data
 		// place in class

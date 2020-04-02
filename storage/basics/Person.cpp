@@ -18,30 +18,25 @@ void Person::setLName (std::string name)
 }
 void Person::setID (std::string filename)
 {
-		std::cout << "In setID\n";
-		float fileID;
-		std::string buffer (9, '\0');
-		std::string sID;
-		int position;
-		char current;
-		std::cout << "In setID";
+		std::string buffer (10,'\0');
 		std::ifstream dataFile;
-		std::cout << "In setID";
-		std::regex idReg ("#\[[0-9]{6}\]");
+		std::regex idReg (R"(#\[[0-9]{6}\])");
+		int position;
 
 		dataFile.open (filename, std::ios::ate | std::ios::binary);
 		position = dataFile.tellg ();
-		position -= 9;
-		while (!regex_match (sID, idReg))
+		position -= 10;
+		while (!std::regex_search (buffer, idReg))
 		{
 				dataFile.seekg (position);
-				dataFile.read (&buffer[0], 9);
-				position -= 10;
+				dataFile.read (&buffer[0], 10);
+				position -= 11;
 		}
 		dataFile.close ();
-		id = std::stoi (sID.substr (2, 6));
+		id = std::stof (buffer.substr (2, 7)) + 1;
+
 }
-float Person::getID () const
+float Person::getID ()
 {
 		return id;
 }
