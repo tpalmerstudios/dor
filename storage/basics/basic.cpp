@@ -90,8 +90,9 @@ int savePerson (Person toSave)
 {
 		std::fstream dataFile;
 		std::string sID = std::to_string (toSave.getID ());
+		std::string buffer (10, '\0');
 		sID = sID.substr (0, 6);
-		int cursor;
+		int endFile, cursor, firstID, nextID;
 
 		std::string regID = (R"(#\[)");
 		regID.append (sID);
@@ -100,6 +101,20 @@ int savePerson (Person toSave)
 		currentID.assign (regID);
 
 		dataFile.open (filename, std::ios::binary);
+		endFile = dataFile.end;
+		for (cursor = 0; cursor < endFile; cursor ++)
+		{
+				dataFile.seekg (cursor);
+				dataFile.read (&buffer[0], 10);
+				if (std::regex_search (buffer, currentID))
+				{
+						//
+				}
+				else
+				{
+						//
+				}
+		}
 		// Search through file for regex - get cursor
 		// If it exists search for next ID - get cursor
 		// Delete all items between the two cursor points
