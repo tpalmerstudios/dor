@@ -130,7 +130,19 @@ int savePerson (Person toSave)
 		regexNID.assign (tempNext);
 
 		// Open a file in binary mode. Input and output
+		dataFile.open (filename, std::ios::in);
+		if (dataFile.fail ())
+		{
+				dataFile.open (filename, std::ios::out );
+				if (dataFile.fail ())
+				{
+						std::cerr << filename << "could not be opened.\n";
+						return 1;
+				}
+		}
+		dataFile.close ();
 		dataFile.open (filename, std::ios::out | std::ios::binary | std::ios::in );
+		/*dataFile.open (filename, std::ios::out | std::ios::binary | std::ios::in );
 		if (dataFile.fail ())
 		{
 				if (dataFile.fail ())
@@ -138,7 +150,7 @@ int savePerson (Person toSave)
 						std::cerr << filename << " could not be opened.\n";
 						return 1;
 				}
-		}
+		}*/
 
 		// If the file is too short, write over it with new data
 		if (dataFile.end < 9 )
