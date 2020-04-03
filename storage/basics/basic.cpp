@@ -15,7 +15,7 @@ int savePerson (Person);
 int callsSet ();
 
 // Global Variables
-std::string filename = "logfile.txt";
+std::string filename = ".logfile.txt";
 
 int main ()
 {
@@ -102,54 +102,63 @@ int deletePerson (int deleteID)
 int savePerson (Person toSave)
 {
 		std::fstream dataFile;
-		std::stringstream cStream;
-		std::stringstream nStream;
-		std::regex regexCID;
-		std::regex regexNID;
+		std::stringstream cStream, nStream;
+		std::regex regexCID, regexNID;
 		std::string buffer (10, '\0');
 		std::string saveString;
-		float currentID, nextID;
-		float position, length;
+		float currentID, nextID, position, length;
 		int cursor;
 
+		// Set up stringstreams with 000000 then add in the ids
 		currentID = toSave.getID ();
 		nextID = currentID + 1;
 		cStream << std::fixed << std::setprecision (0) << std::setw (6) << std::setfill ('0') << currentID;
 		nStream << std::fixed << std::setprecision (0) << std::setw (6) << std::setfill ('0') << nextID;
-		currentID = nextID = 0;
 
 		// Create a string that contains the Person data
 		saveString = "#[" + cStream.str () + "]" + toSave.getFName ();
-		saveString = saveString + ";" + toSave.getMName () + ";" + toSave.getLName () + ";\n";
+		saveString += ";" + toSave.getMName () + ";" + toSave.getLName () + ";\n";
+		std::cout << saveString;
 
 		// Temporary Strings that are RegEx for the first and second
 		// ID codes e.g. #[XXXXXX]
 		std::string tempCurrent = (R"(#\[)");
 		std::string tempNext = (R"(#\[)");
-		tempCurrent += (cStream.str ());
-		tempNext += (nStream.str ());
-		tempCurrent += (R"(\])");
-		tempNext += (R"(\])");
+		tempCurrent += (cStream.str ()) + (R"(\])");
+		tempNext += (nStream.str ()) + (R"(\])");
 		regexCID.assign (tempCurrent);
 		regexNID.assign (tempNext);
+		std::cout << tempCurrent << "\n" << tempNext << "\n";
 
-		dataFile.open (filename, std::ios::binary | std::ios::in | std::ios::out);
+		dataFile.open (filename, std::ios::binary);
+		if (!dataFile)
+		{
+				std::cerr << filename << " could not be opened.\n";
+				return 1;
+		}
+		if (dataFile.end < 9 )
+		{
+				dataFile.seekg (1);
+				dataFile << saveString;
+				dataFile.close ();
+				std::cout << "Written via < 9 test\n";
+				return 0;
+		}
+
 		for (cursor = 0; cursor < dataFile.end; cursor ++)
 		{
-				std::cout << cursor << " ";
 				dataFile.seekg (cursor);
 				dataFile.read (&buffer[0], 10);
 				if (std::regex_search (buffer, regexCID))
 				{
-						currentID = cursor;
+						position = cursor;
 						for (; cursor < dataFile.end; cursor ++)
 						{
-								std::cout << cursor << " ";
 								dataFile.seekg (cursor);
 								dataFile.read (&buffer[0], 10);
 								if (std::regex_search (buffer, regexNID))
 								{				
-										length = cursor - currentID;
+										length = cursor - position;
 										cursor = dataFile.end;
 								}
 						}
@@ -157,13 +166,11 @@ int savePerson (Person toSave)
 				else
 				{
 						cursor = dataFile.end;
-						dataFile.seekg (dataFile.end - 1);
+						dataFile.seekg (cursor);
 						dataFile << saveString << "\n";
+						std::cout << "Written via no regex_search ()\n";
 				}
 		}
-		std::cout << "Stream: " << cStream.str () << "\nComplete String: " << saveString << "\n";
-		std::cout << cursor << " - Cursor\nLength - " << length << "\n";
-
 		return 0;
 }
 
