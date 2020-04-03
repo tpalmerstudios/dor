@@ -130,6 +130,7 @@ int savePerson (Person toSave)
 		regexNID.assign (tempNext);
 
 		// Open a file in binary mode. Input and output
+		// This finally fucking works. Don't change it
 		dataFile.open (filename, std::ios::in);
 		if (dataFile.fail ())
 		{
@@ -142,18 +143,13 @@ int savePerson (Person toSave)
 		}
 		dataFile.close ();
 		dataFile.open (filename, std::ios::out | std::ios::binary | std::ios::in );
-		/*dataFile.open (filename, std::ios::out | std::ios::binary | std::ios::in );
-		if (dataFile.fail ())
-		{
-				if (dataFile.fail ())
-				{
-						std::cerr << filename << " could not be opened.\n";
-						return 1;
-				}
-		}*/
 
+		std::cout << dataFile.end << "END OF FILE!\n";
+		dataFile.seekg ( 0, dataFile.end);
+		float ending = dataFile.tellg ();
+		std::cout << ending << "END OF FILE!\n";
 		// If the file is too short, write over it with new data
-		if (dataFile.end < 9 )
+		if (ending < 9 )
 		{
 				dataFile.seekg (1);
 				dataFile << saveString;
@@ -162,14 +158,15 @@ int savePerson (Person toSave)
 				return 0;
 		}
 
-		for (cursor = 0; cursor < dataFile.end; cursor ++)
+		for (cursor = 0; cursor < ending; cursor ++)
 		{
 				dataFile.seekg (cursor);
 				dataFile.read (&buffer[0], 10);
+				std::cout << buffer << std::endl;
 				if (std::regex_search (buffer, regexCID))
 				{
 						position = cursor;
-						for (; cursor < dataFile.end; cursor ++)
+						for (; cursor < ending; cursor ++)
 						{
 								dataFile.seekg (cursor);
 								dataFile.read (&buffer[0], 10);
@@ -180,12 +177,10 @@ int savePerson (Person toSave)
 								}
 						}
 				}
-				else
+				else if (cursor == ending - 1)
 				{
-						cursor = dataFile.end;
-						dataFile.seekg (cursor);
-						dataFile << saveString << "\n";
-						std::cout << "Written via no regex_search ()\n";
+						dataFile.seekg (ending);
+						dataFile << saveString;
 				}
 		}
 		return 0;

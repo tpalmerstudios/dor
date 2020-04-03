@@ -23,20 +23,21 @@ void Person::setID (std::string filename)
 		std::regex idReg (R"(#\[[0-9]{6}\])");
 		int position;
 
-		dataFile.open (filename, std::ios::ate | std::ios::binary);
+		dataFile.open (filename, std::ios::ate | std::ios::binary | std::ios::in);
 		if (!dataFile)
 		{
 				id = 0;
 				return;
 		}
-		if (dataFile.end <= 9)
+		dataFile.seekg (0, dataFile.end);
+		float ending = dataFile.tellg ();
+		if (ending <= 9)
 		{
 				id = 0;
 				dataFile.close ();
 				return;
 		}
-		position = dataFile.tellg ();
-		position -= 10;
+		position = ending - 10;
 		while (!std::regex_search (buffer, idReg) && position >= 0)
 		{
 				dataFile.seekg (position);
