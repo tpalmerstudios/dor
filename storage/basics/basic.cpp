@@ -15,7 +15,7 @@ int savePerson (Person);
 int callsSet ();
 
 // Global Variables
-std::string filename = ".logfile.txt";
+std::string filename = "logfile.txt";
 
 int main ()
 {
@@ -130,11 +130,14 @@ int savePerson (Person toSave)
 		regexNID.assign (tempNext);
 
 		// Open a file in binary mode. Input and output
-		dataFile.open ("logfile.txt", std::ios::binary);
-		if (!dataFile)
+		dataFile.open (filename, std::ios::out | std::ios::binary | std::ios::in );
+		if (dataFile.fail ())
 		{
-				std::cerr << "logfile.txt" << " could not be opened.\n";
-				return 1;
+				if (dataFile.fail ())
+				{
+						std::cerr << filename << " could not be opened.\n";
+						return 1;
+				}
 		}
 
 		// If the file is too short, write over it with new data
