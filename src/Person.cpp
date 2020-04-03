@@ -1,8 +1,8 @@
-#include "Person.h"
-#include <string>
 #include <iostream>
+#include <string>
 #include <fstream>
 #include <regex>
+#include "Person.h"
 
 void Person::setFName (std::string name)
 {
@@ -16,14 +16,15 @@ void Person::setLName (std::string name)
 {
 		lName = name;
 }
-void Person::setID (std::string filename)
+void Person::setID (std::string file)
 {
 		std::string buffer (10,'\0');
-		std::ifstream dataFile;
+		std::string filename = ".logfile.txt";
 		std::regex idReg (R"(#\[[0-9]{6}\])");
+		std::ifstream dataFile;
 		int position;
 
-		dataFile.open (filename, std::ios::ate | std::ios::binary | std::ios::in);
+		dataFile.open (file, std::ios::ate | std::ios::binary | std::ios::in);
 		if (!dataFile)
 		{
 				id = 0;
