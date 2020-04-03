@@ -60,7 +60,6 @@ int newPerson ()
 		std::cout << "Last Name: ";
 		std::cin >> lName;
 		chosen.setLName (lName);
-		std::cout << chosen.getID () << "\n";
 
 		// Save in file
 		std::cout << "Saving...\n";
@@ -101,6 +100,7 @@ int deletePerson (int deleteID)
 
 int savePerson (Person toSave)
 {
+		// Variable declarations
 		std::fstream dataFile;
 		std::stringstream cStream, nStream;
 		std::regex regexCID, regexNID;
@@ -110,32 +110,34 @@ int savePerson (Person toSave)
 		int cursor;
 
 		// Set up stringstreams with 000000 then add in the ids
+		// This works! Don't fuck with it
 		currentID = toSave.getID ();
 		nextID = currentID + 1;
 		cStream << std::fixed << std::setprecision (0) << std::setw (6) << std::setfill ('0') << currentID;
 		nStream << std::fixed << std::setprecision (0) << std::setw (6) << std::setfill ('0') << nextID;
 
 		// Create a string that contains the Person data
+		// This works! Don't fuck with it
 		saveString = "#[" + cStream.str () + "]" + toSave.getFName ();
 		saveString += ";" + toSave.getMName () + ";" + toSave.getLName () + ";\n";
-		std::cout << saveString;
 
 		// Temporary Strings that are RegEx for the first and second
 		// ID codes e.g. #[XXXXXX]
-		std::string tempCurrent = (R"(#\[)");
-		std::string tempNext = (R"(#\[)");
-		tempCurrent += (cStream.str ()) + (R"(\])");
-		tempNext += (nStream.str ()) + (R"(\])");
+		// These Work! Don't fuck with it
+		std::string tempCurrent = (R"(#\[)") + (cStream.str ()) + (R"(\])");
+		std::string tempNext = (R"(#\[)") + (nStream.str ()) + (R"(\])");
 		regexCID.assign (tempCurrent);
 		regexNID.assign (tempNext);
-		std::cout << tempCurrent << "\n" << tempNext << "\n";
 
-		dataFile.open (filename, std::ios::binary);
+		// Open a file in binary mode. Input and output
+		dataFile.open ("logfile.txt", std::ios::binary);
 		if (!dataFile)
 		{
-				std::cerr << filename << " could not be opened.\n";
+				std::cerr << "logfile.txt" << " could not be opened.\n";
 				return 1;
 		}
+
+		// If the file is too short, write over it with new data
 		if (dataFile.end < 9 )
 		{
 				dataFile.seekg (1);
