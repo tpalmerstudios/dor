@@ -17,6 +17,7 @@ int callsSet ();
 int main ()
 {
 		char input;
+		std::string searchID = "0";
 		while (1)
 		{
 				// Menu Output
@@ -32,7 +33,11 @@ int main ()
 								newPerson ();
 								break;
 						case '2':
-								openPerson (3);
+								openPerson (0);
+								break;
+						case '4':
+								std::cin >> searchID;
+								openPerson (stof (searchID));
 								break;
 						// Exits Program on any other response
 						//default:
@@ -81,34 +86,33 @@ int openPerson (float openID)
 		idStream << std::fixed << std::setprecision (0) << std::setw (6) << std::setfill ('0') << openID;
 		tempReg = (R"(#\[)") + idStream.str () + (R"(\])");
 		regID.assign (tempReg);
-		dataFile.open (filename, std::ios::in | std::ios::binary);
+		dataFile.open (filename, std::ios::binary);
 		while (std::getline (dataFile, buffer) && !std::regex_search (buffer, regID))
 				search.setID (openID);
+
+		// Get location of first ;
+		// set fName to 9 (character after ] in ID string)
+		// and cut the string to the ;
 		delimLoc = buffer.find (";");
 		if (delimLoc == std::string::npos)
 				return 2;
 		fName = buffer.substr (9, (delimLoc - 9));
-		std::cout << fName << std::endl;
-		tempLoc = delimLoc;
-		// Change this to correct substring
+		search.setFName (fName);
+
+		tempLoc = delimLoc + 1;
 		delimLoc = buffer.find (";", tempLoc);
 		if (delimLoc == std::string::npos)
 				return 2;
 		mName = buffer.substr (tempLoc, (delimLoc - tempLoc));
-		std::cout << mName << std::endl;
-		tempLoc = delimLoc;
-		// Change this to correct substring
+		search.setFName (mName);
+		
+		tempLoc = delimLoc + 1;
 		delimLoc = buffer.find (";", tempLoc);
 		if (delimLoc == std::string::npos)
 				return 2;
 		lName = buffer.substr (tempLoc, (delimLoc - tempLoc));
-		std::cout << lName << std::endl;
+		search.setFName (lName);
 
-		search.setFName (fName);
-		std::cout << fName << " First Name\n";
-		// Look through file
-		// retrieve data
-		// place in class
 		dataFile.close ();
 		return editPerson (search, filename);
 }
@@ -120,7 +124,8 @@ int editPerson (Person chosen, std::string filename)
 		// Remove all from start of this data to start of next
 		//Place cursor in file correctly
 		// Save entire Person to file at once
-		return savePerson (chosen, filename);
+		// return savePerson (chosen, filename);
+		// return 0;
 }
 
 int deletePerson (int deleteID)

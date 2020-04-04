@@ -1,14 +1,1 @@
 #[000000]Timothy;Lawrence;Palmer;
-#[000001]Sarah;Collens;Parker;
-#[000002]a;a;a;
-#[000003]I;Love;Pizza;
-#[000004]What;is;happening;
-#[000005]why;empty;names;
-#[000003]I;Love;Piz;;;
-#[000003]I;;;
-#[000003]I;;;
-#[000003]I;;;;
-#[000003]I;;;;
-#[000003]I;;;;
-#[000003]I;;;;
-#[000003]I;;;
