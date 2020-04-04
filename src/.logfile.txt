@@ -1,4 +1,0 @@
-#[000000]Timothy;Lawrence;Palmer;
-#[000001]a;b;c;
-#[0000-0]Murlin;Dale;Graham;
-#[0000-0]Timothy;Lawrence;Palmer;

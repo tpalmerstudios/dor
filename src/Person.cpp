@@ -16,7 +16,7 @@ void Person::setLName (std::string name)
 {
 		lName = name;
 }
-void Person::setID (float searchID)
+void Person::setID (int searchID)
 {
 		id = searchID;
 }
@@ -36,7 +36,7 @@ void Person::setID (std::string file)
 				return;
 		}
 		dataFile.seekg (0, dataFile.end);
-		float ending = dataFile.tellg ();
+		int ending = dataFile.tellg ();
 		if (ending <= 9)
 		{
 				id = 0;
@@ -51,5 +51,5 @@ void Person::setID (std::string file)
 				position -= 1;
 		}
 		dataFile.close ();
-		id = std::stof (buffer.substr (2, 6 )) + 1;
+		id = std::stoi (buffer.substr (2, 6 )) + 1;
 }

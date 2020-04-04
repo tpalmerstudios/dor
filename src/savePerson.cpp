@@ -13,12 +13,13 @@ int savePerson (Person toSave, std::string filename)
 		std::string buffer;
 		std::string saveString;
 		std::fstream dataFile;
-		float currentID, nextID, ending;
+		int currentID, nextID, ending;
 		int cursor;
 		char character;
 
 		// Set up stringstreams with 000000 then add in the ids
 		currentID = toSave.getID ();
+		std::cout << currentID;
 		nextID = currentID + 1;
 		cStream << std::fixed << std::setprecision (0) << std::setw (6) << std::setfill ('0') << currentID;
 		nStream << std::fixed << std::setprecision (0) << std::setw (6) << std::setfill ('0') << nextID;

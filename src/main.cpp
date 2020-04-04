@@ -8,7 +8,7 @@
 
 // Function Declarations
 int newPerson ();
-int openPerson (float);
+int openPerson (int);
 int editPerson (Person, std::string);
 int deletePerson (int);
 int savePerson (Person, std::string);
@@ -37,7 +37,7 @@ int main ()
 								break;
 						case '4':
 								std::cin >> searchID;
-								openPerson (stof (searchID));
+								openPerson (stoi (searchID));
 								break;
 						// Exits Program on any other response
 						//default:
@@ -73,7 +73,7 @@ int newPerson ()
 		return !failure;
 }
 
-int openPerson (float openID)
+int openPerson (int openID)
 {
 		Person search;
 		std::string buffer, tempReg, fName, mName, lName;
@@ -93,7 +93,6 @@ int openPerson (float openID)
 				std::cerr << filename << "could not be opened!\n";
 				return 1;
 		}
-		std::cout << openID << "is the issue here?\n";
 		while (std::getline (dataFile, buffer) && !std::regex_search (buffer, regID))
 				search.setID (openID);
 
