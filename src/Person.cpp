@@ -16,6 +16,11 @@ void Person::setLName (std::string name)
 {
 		lName = name;
 }
+void Person::setID (float searchID)
+{
+		id = searchID;
+}
+
 void Person::setID (std::string file)
 {
 		std::string buffer (10,'\0');

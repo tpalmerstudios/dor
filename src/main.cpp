@@ -31,6 +31,9 @@ int main ()
 						case '1':
 								newPerson ();
 								break;
+						case '2':
+								openPerson (3);
+								break;
 						// Exits Program on any other response
 						//default:
 						//		return 0;
@@ -68,24 +71,45 @@ int newPerson ()
 int openPerson (float openID)
 {
 		Person search;
-		std::string buffer, tempReg;
+		std::string buffer, tempReg, fName, mName, lName;
 		std::string filename = ".logfile.txt";
 		std::regex regID;
 		std::stringstream idStream;
 		std::ifstream dataFile;
+		std::size_t delimLoc, tempLoc;
 
 		idStream << std::fixed << std::setprecision (0) << std::setw (6) << std::setfill ('0') << openID;
-		tempReg = (R"(#\[)") + (idStream.str ()) + (R"(\])");
+		tempReg = (R"(#\[)") + idStream.str () + (R"(\])");
 		regID.assign (tempReg);
 		dataFile.open (filename, std::ios::in | std::ios::binary);
 		while (std::getline (dataFile, buffer) && !std::regex_search (buffer, regID))
-		{
-				//
-		}
+				search.setID (openID);
+		delimLoc = buffer.find (";");
+		if (delimLoc == std::string::npos)
+				return 2;
+		fName = buffer.substr (9, (delimLoc - 9));
+		std::cout << fName << std::endl;
+		tempLoc = delimLoc;
+		// Change this to correct substring
+		delimLoc = buffer.find (";", tempLoc);
+		if (delimLoc == std::string::npos)
+				return 2;
+		mName = buffer.substr (tempLoc, (delimLoc - tempLoc));
+		std::cout << mName << std::endl;
+		tempLoc = delimLoc;
+		// Change this to correct substring
+		delimLoc = buffer.find (";", tempLoc);
+		if (delimLoc == std::string::npos)
+				return 2;
+		lName = buffer.substr (tempLoc, (delimLoc - tempLoc));
+		std::cout << lName << std::endl;
 
+		search.setFName (fName);
+		std::cout << fName << " First Name\n";
 		// Look through file
 		// retrieve data
 		// place in class
+		dataFile.close ();
 		return editPerson (search, filename);
 }
 
@@ -96,8 +120,7 @@ int editPerson (Person chosen, std::string filename)
 		// Remove all from start of this data to start of next
 		//Place cursor in file correctly
 		// Save entire Person to file at once
-		bool failure = savePerson (chosen, filename);
-		return !failure;
+		return savePerson (chosen, filename);
 }
 
 int deletePerson (int deleteID)
