@@ -90,7 +90,7 @@ int openPerson (int openID)
 		dataFile.open (filename, std::ios::binary);
 		if (dataFile.fail ())
 		{
-				std::cerr << filename << "could not be opened!\n";
+				std::cerr << filename << " could not be opened!\n";
 				return 1;
 		}
 		while (std::getline (dataFile, buffer) && !std::regex_search (buffer, regID))

@@ -19,7 +19,6 @@ int savePerson (Person toSave, std::string filename)
 
 		// Set up stringstreams with 000000 then add in the ids
 		currentID = toSave.getID ();
-		std::cout << currentID;
 		nextID = currentID + 1;
 		cStream << std::fixed << std::setprecision (0) << std::setw (6) << std::setfill ('0') << currentID;
 		nStream << std::fixed << std::setprecision (0) << std::setw (6) << std::setfill ('0') << nextID;
@@ -28,7 +27,6 @@ int savePerson (Person toSave, std::string filename)
 		saveString = "#[" + cStream.str () + "]" + toSave.getFName ();
 		saveString += ";" + toSave.getMName () + ";" + toSave.getLName () + ";\n";
 
-		std::cout << saveString << "Is the issue here?\n";
 		// Temporary Strings that are RegEx for the first and second
 		// ID codes e.g. #[XXXXXX]
 		std::string tempCurrent = (R"(#\[)") + (cStream.str ()) + (R"(\])");
@@ -54,9 +52,11 @@ int savePerson (Person toSave, std::string filename)
 				std::cerr << filename << "could not be opened.\n";
 				return 1;
 		}
-		ending = 0;
+		ending = cursor = 0;
 		while (dataFile >> character)
 				ending ++;
+
+		// If the file is way too short
 		if (ending < 9)
 		{
 				dataFile.clear ();
@@ -65,9 +65,12 @@ int savePerson (Person toSave, std::string filename)
 				dataFile.close ();
 				return 0;
 		}
+
+		dataFile.clear ();
+		dataFile.seekg (0, std::ios::beg);
+		// If the ID is found in the file
 		while (std::getline (dataFile, buffer))
 		{
-				cursor = dataFile.tellp ();
 				if (std::regex_search (buffer, regexCID))
 				{
 						dataFile.clear ();
@@ -76,7 +79,9 @@ int savePerson (Person toSave, std::string filename)
 						dataFile.close ();
 						return 0;
 				}
+				cursor = dataFile.tellp ();
 		}
+		// Go to the end of the file and add data there
 		dataFile.clear ();
 		dataFile.seekp (0, std::ios::end);
 		dataFile << saveString;
