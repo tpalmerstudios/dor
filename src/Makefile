@@ -1,11 +1,25 @@
 CXX		=	g++
 CXXFLAGS=	-Wall
+OBJECTS	=	main.o savePerson.o Person.o
 
 .cpp.o:
 	$(CXX) $(CXXFLAGS) -c $<
+.cpp:
+	$(CXX) $(CXXFLAGS) $@.cpp -o $@
 
-basic: main.cpp Person.cpp savePerson.cpp
-	$(CXX) $(CXXFLAGS) $? -o $@
+basic: $(OBJECTS) Person.h
+	$(CXX) $(OBJECTS) -o $@
+
+#basic: main.cpp savePerson.cpp Person.cpp
+#		$(CXX) $(CXXFLAGS) $? -o $@
 
 clean:
-	-rm *.o *~ basic
+	-rm *.o basic
+
+temporary:
+	-rm *.o
+
+install:
+	@echo Project does not support installation
+	@echo Read Readme!
+
