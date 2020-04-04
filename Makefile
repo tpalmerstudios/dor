@@ -1,47 +1,36 @@
-CXX = g++
-CC = gcc
-PWD = /home/user/networkProjects
+CXX		=	g++
+CC		=	gcc
+CXXFLAGS=	-Wall
+CFLAGS	=	-Wall
+MATH	=	basicMath/
+DATA	=	dataTemplate/
+CXXSOURCE	=	$(MATH)circle.cpp $(DATA)employee.cpp $(DATA)people.cpp $(DATA)example.cpp
+CSOURCE	=	$(MATH)tempConversion.c
 
+basic: src/main.o src/savePerson.o src/Person.o
+	$(CXX) src/main.o src/savePerson.o src/Person.o -o src/$@
 
-all:
-	cd $(PWD)/basicMath/; \
-	$(CC) tempConversion.c -o tempConversion; \
-	$(CXX) circle.cpp -o circle; \
-	cd rectangle; \
-	$(CXX) getRect.cpp Rectangle.cpp -o getRect; \
-	cd ../../dataTemplate/; \
-	$(CXX) example.cpp -o example; \
-	$(CXX) people.cpp -o people; \
-	$(CXX) employee.cpp -o employee; \
-	cd queue/; \
-	$(CXX) exampleQueue.cpp intQueue.cpp -o exampleQueue; \
-	cd ../../wordManips; \
-	$(CC) charCount.c -o charCount; \
-	$(CC) digitCounter.c -o digitCounter; \
-	$(CC) i2o.c -o i2o; \
-	$(CC) lineCount.c -o lineCount; \
-	$(CC) noBlank.c -o noBlank; \
-	$(CC) visiEscapes.c -o visiEscapes; \
-	$(CC) whitespace.c -o whitespace; \
-	$(CC) wordCount.c -o wordCount; \
-	$(CC) wordLengthGraph.c -o wordLengthGraph;
+#basic: main.cpp savePerson.cpp Person.cpp
+#		$(CXX) $(CXXFLAGS) $? -o $@
 
 clean:
-	-rm basicMath/tempConversion;
-	-rm basicMath/circle;
-	-rm basicMath/rectangle/getRect;
-	-rm wordManips/charCount;
-	-rm wordManips/digitCounter;
-	-rm wordManips/i2o;
-	-rm wordManips/lineCount
-	-rm wordManips/noBlank
-	-rm wordManips/visiEscapes
-	-rm wordManips/whitespace
-	-rm wordManips/wordCount
-	-rm wordManips/wordLengthGraph
-	-rm dataTemplate/dataStructs
-	-rm dataTemplate/example
-	-rm dataTemplate/employee
-	-rm dataTemplate/people
-	-rm dataTemplate/queue/exampleQueue
+	-rm *.o basic
+
+temporary:
+	-rm *.o
+
+install:
+	@echo Project does not support installation
+	@echo Read Readme!
+
+.cpp.o:
+	$(CXX) $(CXXFLAGS) -c $<
+.cpp:
+	$(CXX) $(CXXFLAGS) $@.cpp -o $@
+	
+.c.o:
+	$(CC) $(CFLAGS) -c $<
+
+.c:
+	$(CC) $(CFLAGS) $@.cpp -o $@
 
