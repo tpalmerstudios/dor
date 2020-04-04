@@ -83,10 +83,17 @@ int openPerson (float openID)
 		std::ifstream dataFile;
 		std::size_t delimLoc, tempLoc;
 
+		// Make a regex to find the id entered
 		idStream << std::fixed << std::setprecision (0) << std::setw (6) << std::setfill ('0') << openID;
 		tempReg = (R"(#\[)") + idStream.str () + (R"(\])");
 		regID.assign (tempReg);
 		dataFile.open (filename, std::ios::binary);
+		if (dataFile.fail ())
+		{
+				std::cerr << filename << "could not be opened!\n";
+				return 1;
+		}
+		std::cout << openID << "is the issue here?\n";
 		while (std::getline (dataFile, buffer) && !std::regex_search (buffer, regID))
 				search.setID (openID);
 
@@ -99,33 +106,49 @@ int openPerson (float openID)
 		fName = buffer.substr (9, (delimLoc - 9));
 		search.setFName (fName);
 
+		// Temporary store previous ;
+		// fine next ;
+		// cut between the two
 		tempLoc = delimLoc + 1;
 		delimLoc = buffer.find (";", tempLoc);
 		if (delimLoc == std::string::npos)
 				return 2;
 		mName = buffer.substr (tempLoc, (delimLoc - tempLoc));
-		search.setFName (mName);
+		search.setMName (mName);
 		
+		// Temporary store previous ;
+		// fine next ;
+		// cut between the two
 		tempLoc = delimLoc + 1;
 		delimLoc = buffer.find (";", tempLoc);
 		if (delimLoc == std::string::npos)
 				return 2;
 		lName = buffer.substr (tempLoc, (delimLoc - tempLoc));
-		search.setFName (lName);
-
+		search.setLName (lName);
 		dataFile.close ();
 		return editPerson (search, filename);
 }
 
 int editPerson (Person chosen, std::string filename)
 {
-		// Load a piece of data
-		// Get input to change or skip
-		// Remove all from start of this data to start of next
-		//Place cursor in file correctly
-		// Save entire Person to file at once
-		// return savePerson (chosen, filename);
-		// return 0;
+		std::string fName, mName, lName;
+		std::cout << "Edit a Person\n" << std::endl;
+		std::cout << "First Name: " << chosen.getFName ();
+		std::cout << "\nNew First Name: ";
+		std::cin >> fName;
+		std::cout << "Middle Name: " << chosen.getMName ();
+		std::cout << "\nNew Middle Name: ";
+		std::cin >> mName;
+		std::cout << "Last Name: " << chosen.getLName ();
+		std::cout << "\nNew Last Name: ";
+		std::cin >> lName;
+		if (fName != "-")
+				chosen.setFName (fName);
+		if (mName != "-")
+				chosen.setMName (mName);
+		if (lName != "-")
+				chosen.setLName (lName);
+		return savePerson (chosen, filename);
 }
 
 int deletePerson (int deleteID)

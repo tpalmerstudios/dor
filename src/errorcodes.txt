@@ -1,0 +1,5 @@
+A file to map out my error codes to be used in documentation
+0	No error
+1	Open File Error
+2	Write to file error
+

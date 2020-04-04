@@ -27,6 +27,7 @@ int savePerson (Person toSave, std::string filename)
 		saveString = "#[" + cStream.str () + "]" + toSave.getFName ();
 		saveString += ";" + toSave.getMName () + ";" + toSave.getLName () + ";\n";
 
+		std::cout << saveString << "Is the issue here?\n";
 		// Temporary Strings that are RegEx for the first and second
 		// ID codes e.g. #[XXXXXX]
 		std::string tempCurrent = (R"(#\[)") + (cStream.str ()) + (R"(\])");
