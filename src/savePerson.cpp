@@ -10,11 +10,9 @@ int savePerson (Person toSave, std::string filename)
 		// Variable declarations
 		std::stringstream cStream, nStream;
 		std::regex regexCID, regexNID;
-		std::string buffer;
-		std::string saveString;
+		std::string buffer, saveString, tempCurrent, tempNext;
 		std::fstream dataFile;
-		int currentID, nextID, ending;
-		int cursor;
+		int currentID, nextID, ending, nextLine, cursor, i, j;
 		char character;
 
 		// Set up stringstreams with 000000 then add in the ids
@@ -29,8 +27,8 @@ int savePerson (Person toSave, std::string filename)
 
 		// Temporary Strings that are RegEx for the first and second
 		// ID codes e.g. #[XXXXXX]
-		std::string tempCurrent = (R"(#\[)") + (cStream.str ()) + (R"(\])");
-		std::string tempNext = (R"(#\[)") + (nStream.str ()) + (R"(\])");
+		tempCurrent = (R"(#\[)") + (cStream.str ()) + (R"(\])");
+		tempNext = (R"(#\[)") + (nStream.str ()) + (R"(\])");
 		regexCID.assign (tempCurrent);
 		regexNID.assign (tempNext);
 
@@ -71,11 +69,24 @@ int savePerson (Person toSave, std::string filename)
 		// If the ID is found in the file
 		while (std::getline (dataFile, buffer))
 		{
+				nextLine = (dataFile.tellp () - 1);
 				if (std::regex_search (buffer, regexCID))
 				{
 						dataFile.clear ();
 						dataFile.seekp (cursor);
+						std::vector<std::string> fileLine {""};
+						for (i = 0; std::getline (dataFile, fileLine[i]); i++)
+						{
+								fileLine.push_back ("");
+						}
+						dataFile.clear ();
+						dataFile.seekp (cursor);
 						dataFile << saveString;
+						for (j = 0; j > i; j++)
+						{
+								dataFile << fileLine [j];
+						}
+						fileLine.erase (fileLine.begin (), fileLine.end ());
 						dataFile.close ();
 						return 0;
 				}
