@@ -8,24 +8,28 @@
 
 // Function Declarations
 int newPerson ();
-int openPerson (int);
-int editPerson (Person, std::string);
+int editPerson (std::string);
 int deletePerson (int);
 int savePerson (Person, std::string);
 int callsSet ();
+Person searchPerson (std::string);				// Returns a person after searching through file and allowing selection
+Person toPerson (std::string);					// Makes a person from a saveString
+int IDtoPerson (int);								// Makes a person from ID #
+int outPerson (Person);							// Displays a person from a class Person	
+Person selectPerson ();
 
 int main ()
 {
 		char input;
-		std::string searchID = "0";
 		while (1)
 		{
 				// Menu Output
 				std::cout << "Main Menu\n\n";
 				std::cout << "1) New Person\n";
-				std::cout << "2) View Person\n";
-				std::cout << "3) Delete Person\n";
+				std::cout << "2) Edit Person\n";
+				std::cout << "3) View Person\n";
 				std::cout << "4) Search Person\n";
+				std::cout << "5) Delete Person\n";
 				std::cin >> input;
 				switch (input)
 				{
@@ -33,15 +37,16 @@ int main ()
 								newPerson ();
 								break;
 						case '2':
-								openPerson (0);
+								editPerson (".logfile.txt");
+								break;
+						case '3':
 								break;
 						case '4':
-								std::cin >> searchID;
-								openPerson (stoi (searchID));
 								break;
-						// Exits Program on any other response
-						//default:
-						//		return 0;
+						case '5':
+								break;
+						default:
+								return 0;
 				}
 		}
 		return 0;
@@ -73,15 +78,14 @@ int newPerson ()
 		return !failure;
 }
 
-int openPerson (int openID)
+int IDtoPerson (int openID)
 {
-		Person search;
-		std::string buffer, tempReg, fName, mName, lName;
+		Person human;
+		std::string buffer, tempReg;
 		std::string filename = ".logfile.txt";
 		std::regex regID;
 		std::stringstream idStream;
 		std::ifstream dataFile;
-		std::size_t delimLoc, tempLoc;
 
 		// Make a regex to find the id entered
 		idStream << std::fixed << std::setprecision (0) << std::setw (6) << std::setfill ('0') << openID;
@@ -94,60 +98,33 @@ int openPerson (int openID)
 				return 1;
 		}
 		while (std::getline (dataFile, buffer) && !std::regex_search (buffer, regID))
-				search.setID (openID);
-
-		// Get location of first ;
-		// set fName to 9 (character after ] in ID string)
-		// and cut the string to the ;
-		delimLoc = buffer.find (";");
-		if (delimLoc == std::string::npos)
-				return 2;
-		fName = buffer.substr (9, (delimLoc - 9));
-		search.setFName (fName);
-
-		// Temporary store previous ;
-		// fine next ;
-		// cut between the two
-		tempLoc = delimLoc + 1;
-		delimLoc = buffer.find (";", tempLoc);
-		if (delimLoc == std::string::npos)
-				return 2;
-		mName = buffer.substr (tempLoc, (delimLoc - tempLoc));
-		search.setMName (mName);
-		
-		// Temporary store previous ;
-		// fine next ;
-		// cut between the two
-		tempLoc = delimLoc + 1;
-		delimLoc = buffer.find (";", tempLoc);
-		if (delimLoc == std::string::npos)
-				return 2;
-		lName = buffer.substr (tempLoc, (delimLoc - tempLoc));
-		search.setLName (lName);
 		dataFile.close ();
-		return editPerson (search, filename);
+
+		human = toPerson (buffer);
+		return 0;
 }
 
-int editPerson (Person chosen, std::string filename)
+int editPerson (std::string filename)
 {
+		Person human = selectPerson ();
 		std::string fName, mName, lName;
 		std::cout << "Edit a Person\n" << std::endl;
-		std::cout << "First Name: " << chosen.getFName ();
+		std::cout << "First Name: " << human.getFName ();
 		std::cout << "\nNew First Name: ";
 		std::cin >> fName;
-		std::cout << "Middle Name: " << chosen.getMName ();
+		std::cout << "Middle Name: " << human.getMName ();
 		std::cout << "\nNew Middle Name: ";
 		std::cin >> mName;
-		std::cout << "Last Name: " << chosen.getLName ();
+		std::cout << "Last Name: " << human.getLName ();
 		std::cout << "\nNew Last Name: ";
 		std::cin >> lName;
 		if (fName != "-")
-				chosen.setFName (fName);
+				human.setFName (fName);
 		if (mName != "-")
-				chosen.setMName (mName);
+				human.setMName (mName);
 		if (lName != "-")
-				chosen.setLName (lName);
-		return savePerson (chosen, filename);
+				human.setLName (lName);
+		return savePerson (human, filename);
 }
 
 int deletePerson (int deleteID)

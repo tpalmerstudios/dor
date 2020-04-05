@@ -5,32 +5,29 @@
 #include <regex>
 #include "Person.h"
 
+Person toPerson (std::string);
+int outPeron (Person);
 int savePerson (Person toSave, std::string filename)
 {
 		// Variable declarations
-		std::stringstream cStream, nStream;
-		std::regex regexCID, regexNID;
-		std::string buffer, saveString, tempCurrent, tempNext;
+		std::stringstream cStream;
+		std::regex regexCID;
+		std::string buffer, saveString, tempCurrent;
 		std::fstream dataFile;
-		int currentID, nextID, ending, nextLine, cursor, i, j;
+		int currentID, ending, nextLine, cursor, i, j;
 		char character;
 
 		// Set up stringstreams with 000000 then add in the ids
 		currentID = toSave.getID ();
-		nextID = currentID + 1;
 		cStream << std::fixed << std::setprecision (0) << std::setw (6) << std::setfill ('0') << currentID;
-		nStream << std::fixed << std::setprecision (0) << std::setw (6) << std::setfill ('0') << nextID;
 
 		// Create a string that contains the Person data
 		saveString = "#[" + cStream.str () + "]" + toSave.getFName ();
 		saveString += ";" + toSave.getMName () + ";" + toSave.getLName () + ";\n";
 
-		// Temporary Strings that are RegEx for the first and second
 		// ID codes e.g. #[XXXXXX]
 		tempCurrent = (R"(#\[)") + (cStream.str ()) + (R"(\])");
-		tempNext = (R"(#\[)") + (nStream.str ()) + (R"(\])");
 		regexCID.assign (tempCurrent);
-		regexNID.assign (tempNext);
 
 		// Open a file in binary mode. Input and output
 		dataFile.open (filename, std::ios::in);
@@ -69,7 +66,8 @@ int savePerson (Person toSave, std::string filename)
 		// If the ID is found in the file
 		while (std::getline (dataFile, buffer))
 		{
-				nextLine = (dataFile.tellp () - 1);
+				nextLine = dataFile.tellp ();
+				nextLine --;
 				if (std::regex_search (buffer, regexCID))
 				{
 						dataFile.clear ();
