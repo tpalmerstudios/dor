@@ -12,7 +12,6 @@ basic: src/main.o src/savePerson.o src/Person.o
 
 #basic: main.cpp savePerson.cpp Person.cpp
 #		$(CXX) $(CXXFLAGS) $? -o $@
-
 clean:
 	-rm *.o basic
 
