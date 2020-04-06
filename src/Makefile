@@ -1,6 +1,6 @@
 CXX		=	g++
 CXXFLAGS=	-Wall
-OBJECTS	=	editPerson.o newPerson.o selectPerson.o main.o savePerson.o Person.o searchPerson.o outPerson.o toPerson.o
+OBJECTS	=	deletePerson.o editPerson.o newPerson.o selectPerson.o main.o savePerson.o Person.o searchPerson.o outPerson.o toPerson.o
 
 .cpp.o:
 	$(CXX) $(CXXFLAGS) -c $<

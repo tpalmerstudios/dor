@@ -36,7 +36,7 @@ int savePerson (Person toSave, std::string filename)
 				dataFile.open (filename, std::ios::out );
 				if (dataFile.fail ())
 				{
-						std::cerr << filename << "could not be opened.\n";
+						std::cerr << filename << " could not be opened.\n";
 						return 1;
 				}
 		}

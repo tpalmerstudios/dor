@@ -29,10 +29,6 @@ Person selectPerson ()
 										valid = true;
 										human = IDtoPerson (std::stoi (idString));
 								}
-								else
-								{
-										valid = false;
-								}
 						}
 				}
 				else if (selection == "search" || selection == "search")

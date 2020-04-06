@@ -7,10 +7,10 @@
 #include "Person.h" 		// Person class
 
 // Function Declarations
+int deletePerson (std::string);
 int savePerson (Person, std::string);
 int editPerson (std::string);
 int outPerson (Person);							// Displays a person from a class Person	
-int deletePerson (int);
 int newPerson ();
 int callsSet ();
 Person searchPerson (std::string);				// Returns a person after searching through file and allowing selection
@@ -28,8 +28,7 @@ int main ()
 				std::cout << "1) New Person\n";
 				std::cout << "2) Edit Person\n";
 				std::cout << "3) View Person\n";
-				std::cout << "4) Search Person\n";
-				std::cout << "5) Delete Person\n";
+				std::cout << "4) Delete Person\n";
 				std::cin >> input;
 				switch (input)
 				{
@@ -40,10 +39,10 @@ int main ()
 								editPerson (".logfile.txt");
 								break;
 						case '3':
+								outPerson (selectPerson ());
 								break;
 						case '4':
-								break;
-						case '5':
+								deletePerson (".logfile.txt");
 								break;
 						default:
 								return 0;
@@ -82,14 +81,5 @@ Person IDtoPerson (int openID)
 				human = toPerson (buffer);
 		}
 		return human;
-}
-
-int deletePerson (int deleteID)
-{
-		// open file
-		// find id in file
-		// find next id as ending point
-		// delete all between those cursors
-		return 0;
 }
 
