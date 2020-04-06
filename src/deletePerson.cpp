@@ -16,6 +16,7 @@ int deletePerson (std::string filename)
 		std::fstream dataFile;
 		std::vector <std::string> all;
 		int id, i, j;
+		bool found = false;
 
 		// Create a string that contains the Person data
 		id = human.getID ();
@@ -42,10 +43,24 @@ int deletePerson (std::string filename)
 		}
 		for (i = 0; std::getline (dataFile, line); i++)
 		{
-				if (line.find (saveString) == std::string::npos)
+				if (line.find (saveString) == std::string::npos && dataFile)
 				{
 						all.push_back (line);
 				}
+				else if (dataFile.fail ())
+				{
+						found = false;
+				}
+				else
+				{
+						found = true;
+						i --;
+				}
+		}
+		if (!found)
+		{
+				std::cerr << "Person not found. Nothing Deleted.\n";
+				return 3;
 		}
 
 		for (j = 0; j < i; j++)

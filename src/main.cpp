@@ -61,18 +61,23 @@ Person IDtoPerson (int openID)
 		std::ifstream dataFile;
 		bool found = false;
 
-		idStream << std::fixed << std::setprecision (0) << std::setw (6) << std::setfill ('0') << openID;
-		tempReg = (R"(#\[)") + idStream.str () + (R"(\])");
-		regID.assign (tempReg);
 		dataFile.open (filename, std::ios::binary);
 		if (dataFile.fail ())
 		{
 				std::cerr << filename << " could not be opened!\n";
 				return human;
 		}
-		while (std::getline (dataFile, buffer) && !std::regex_search (buffer, regID))
+
+		// Create a stringstream to hold ID
+		idStream << std::fixed << std::setprecision (0) << std::setw (6) << std::setfill ('0') << openID;
+		tempReg = (R"(#\[)") + idStream.str () + (R"(\])");
+		regID.assign (tempReg);
+		while (!found && std::getline (dataFile, buffer))
 		{
-				found = true;
+				if (std::regex_search (buffer, regID))
+				{
+						found = true;
+				}
 		}
 		dataFile.close ();
 
