@@ -12,7 +12,7 @@ Person searchPerson (std::string filename)
 		// Declare Variables
 		std::string searchPhrase, current;
 		std::ifstream dataFile;
-		int prevLine, results;
+		int results;
 		Person search;
 		std::vector <Person> matched;
 		std::string selection = "0";
@@ -33,7 +33,6 @@ Person searchPerson (std::string filename)
 				std::cin >> searchPhrase;
 				while (std::getline (dataFile, current))
 				{
-						prevLine = dataFile.tellg ();
 						if (current.find (searchPhrase) != std::string::npos)
 						{
 								matched.push_back (toPerson (current));
@@ -42,6 +41,9 @@ Person searchPerson (std::string filename)
 								results ++;
 						}
 				}
+
+				// Check results it appears this part below works correctly
+				// However the partabove does not load in the data
 				if (results == 0)
 				{
 						std::cerr << "No matches found. Try another search term.\n";
@@ -66,45 +68,3 @@ Person searchPerson (std::string filename)
 		return search;
 }
 
-Person selectPerson ()
-{
-		Person human;
-		std::string selection = "";
-		std::string idString;
-		bool valid = false;
-		while (selection == "")
-		{
-				std::cout << "Enter ID or Search for a person? ";
-				std::cin >> selection;
-				if (selection == "id" || selection == "ID")
-				{
-						while (!valid)
-						{
-								std::cout << "Enter ID: ";
-								std::cin >> idString;
-								// Great little snippet from stack overflow to test if all digits are numeric
-								// Save this gem! https://stackoverflow.com/a/33532715
-								if (std::all_of (idString.begin (), idString.end (), [](unsigned char c) {return std::isdigit(c);}))
-								{
-										valid = true;
-										std::cout << "Does it work up to here?\n";
-										human = IDtoPerson (std::stoi (idString));
-								}
-								else
-								{
-										valid = false;
-								}
-						}
-				}
-				else if (selection == "search" || selection == "search")
-				{
-						human = searchPerson (".logfile.txt");
-						std::cout << human.getFName();
-				}
-				else
-				{
-						selection = "";
-				}
-		}
-		return human;
-}

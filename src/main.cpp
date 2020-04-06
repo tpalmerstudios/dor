@@ -7,15 +7,15 @@
 #include "Person.h" 		// Person class
 
 // Function Declarations
-int newPerson ();
-int editPerson (std::string);
-int deletePerson (int);
 int savePerson (Person, std::string);
+int editPerson (std::string);
+int outPerson (Person);							// Displays a person from a class Person	
+int deletePerson (int);
+int newPerson ();
 int callsSet ();
 Person searchPerson (std::string);				// Returns a person after searching through file and allowing selection
 Person toPerson (std::string);					// Makes a person from a saveString
-int IDtoPerson (int);								// Makes a person from ID #
-int outPerson (Person);							// Displays a person from a class Person	
+Person IDtoPerson (int);								// Makes a person from ID #
 Person selectPerson ();
 
 int main ()
@@ -51,34 +51,8 @@ int main ()
 		}
 		return 0;
 }
-int newPerson ()
-{
-		Person chosen;
-		// Temporary strings
-		std::string fName;
-		std::string mName;
-		std::string lName;
-		std::string filename = ".logfile.txt";
-		chosen.setID (filename);
 
-		// Get data from user and put it in class
-		std::cout << "First Name: ";
-		std::cin >> fName;
-		chosen.setFName (fName);
-		std::cout << "Middle Name: ";
-		std::cin >> mName;
-		chosen.setMName (mName);
-		std::cout << "Last Name: ";
-		std::cin >> lName;
-		chosen.setLName (lName);
-
-		// Save in file
-		std::cout << "Saving...\n";
-		bool failure = savePerson (chosen, filename);
-		return !failure;
-}
-
-int IDtoPerson (int openID)
+Person IDtoPerson (int openID)
 {
 		Person human;
 		std::string buffer, tempReg;
@@ -86,8 +60,8 @@ int IDtoPerson (int openID)
 		std::regex regID;
 		std::stringstream idStream;
 		std::ifstream dataFile;
+		bool found = false;
 
-		// Make a regex to find the id entered
 		idStream << std::fixed << std::setprecision (0) << std::setw (6) << std::setfill ('0') << openID;
 		tempReg = (R"(#\[)") + idStream.str () + (R"(\])");
 		regID.assign (tempReg);
@@ -95,36 +69,19 @@ int IDtoPerson (int openID)
 		if (dataFile.fail ())
 		{
 				std::cerr << filename << " could not be opened!\n";
-				return 1;
+				return human;
 		}
 		while (std::getline (dataFile, buffer) && !std::regex_search (buffer, regID))
+		{
+				found = true;
+		}
 		dataFile.close ();
 
-		human = toPerson (buffer);
-		return 0;
-}
-
-int editPerson (std::string filename)
-{
-		Person human = selectPerson ();
-		std::string fName, mName, lName;
-		std::cout << "Edit a Person\n" << std::endl;
-		std::cout << "First Name: " << human.getFName ();
-		std::cout << "\nNew First Name: ";
-		std::cin >> fName;
-		std::cout << "Middle Name: " << human.getMName ();
-		std::cout << "\nNew Middle Name: ";
-		std::cin >> mName;
-		std::cout << "Last Name: " << human.getLName ();
-		std::cout << "\nNew Last Name: ";
-		std::cin >> lName;
-		if (fName != "-")
-				human.setFName (fName);
-		if (mName != "-")
-				human.setMName (mName);
-		if (lName != "-")
-				human.setLName (lName);
-		return savePerson (human, filename);
+		if (found)
+		{
+				human = toPerson (buffer);
+		}
+		return human;
 }
 
 int deletePerson (int deleteID)

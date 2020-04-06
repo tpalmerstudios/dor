@@ -1,35 +1,42 @@
+#include <algorithm>
 #include <string>
 #include "Person.h"
 
+int outPerson (Person);
 Person toPerson (std::string saveString)
 {
-		Person inputPerson;
+		Person human;
 		std::string fName, mName, lName;
 		int id;
 		std::size_t tempLoc, delimLoc;
-		
+		// Great little snippet from stack overflow to test if all digits are numeric
+		// Save this gem! https://stackoverflow.com/a/33532715
+		//if (!std::all_of (saveString.begin (), saveString.end (), [](unsigned char c) {return std::isdigit(c);}))
+		//{
+		//		return human;
+		//}
 		id = stoi (saveString.substr (2,6));
-		inputPerson.setID (id);
+		human.setID (id);
 
 		delimLoc = saveString.find (";");
 		if (delimLoc == std::string::npos)
-				return inputPerson;
+				return human;
 		fName = saveString.substr (9, (delimLoc - 9));
-		inputPerson.setFName (fName);
+		human.setFName (fName);
 
 		tempLoc = delimLoc + 1;
 		delimLoc = saveString.find (";", tempLoc);
 		if (delimLoc == std::string::npos)
-				return inputPerson;
+				return human;
 		mName = saveString.substr (tempLoc, (delimLoc - tempLoc));
-		inputPerson.setMName (mName);
+		human.setMName (mName);
 
 		tempLoc = delimLoc + 1;
 		delimLoc = saveString.find (";", tempLoc);
 		if (delimLoc == std::string::npos)
-				return inputPerson;
+				return human;
 		lName = saveString.substr (tempLoc, (delimLoc - tempLoc));
-		inputPerson.setLName (lName);
+		human.setLName (lName);
 
-		return inputPerson;
+		return human;
 }
