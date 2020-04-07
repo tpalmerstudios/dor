@@ -9,8 +9,7 @@
 #include <iomanip>
 
 Person selectPerson ();
-int outPerson (Person);
-
+/// int deletePerson (std::string filename) takes a string that holdsthe name of a file to open. It opens the file and retrieves a selected Person via selectPerson (). It then deletes the entry from the file and truncates the file to correct length. It returns 0 on success and -1 on failure
 int deletePerson (std::string filename)
 {
 		Person human = selectPerson ();
@@ -92,9 +91,6 @@ int deletePerson (std::string filename)
 				std::cerr << "Failure to truncate. Though data may have been deleted.\n";
 				return -1;
 		}
-		outPerson (human);
-		std::cout << "This entry has been deleted...\n";
-
 		return 0;
 }
 

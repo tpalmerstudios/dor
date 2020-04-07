@@ -2,17 +2,16 @@
 
 int savePerson (Person, std::string);
 
+// int newPerson () outputs promtsfor a user to enter details of a Person and places input into a file. It return 0 on success and -1 on failure
 int newPerson ()
 {
 		Person chosen;
-		// Temporary strings
 		std::string fName;
 		std::string mName;
 		std::string lName;
 		std::string filename = ".logfile.txt";
 		chosen.setID (filename);
 
-		// Get data from user and put it in class
 		std::cout << "First Name: ";
 		std::cin >> fName;
 		chosen.setFName (fName);
@@ -23,8 +22,7 @@ int newPerson ()
 		std::cin >> lName;
 		chosen.setLName (lName);
 
-		// Save in file
 		std::cout << "Saving...\n";
-		bool failure = savePerson (chosen, filename);
-		return !failure;
+		savePerson (chosen, filename);
+		return 0;
 }

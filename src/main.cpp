@@ -10,11 +10,9 @@
 int deletePerson (std::string);
 int savePerson (Person, std::string);
 int editPerson (std::string);
-int outPerson (Person);							// Displays a person from a class Person	
 int newPerson ();
 int callsSet ();
 Person searchPerson (std::string);				// Returns a person after searching through file and allowing selection
-Person toPerson (std::string);					// Makes a person from a saveString
 Person IDtoPerson (int);								// Makes a person from ID #
 Person selectPerson ();
 
@@ -39,7 +37,7 @@ int main ()
 								editPerson (".logfile.txt");
 								break;
 						case '3':
-								outPerson (selectPerson ());
+								selectPerson ().outPerson ();
 								break;
 						case '4':
 								deletePerson (".logfile.txt");
@@ -83,7 +81,7 @@ Person IDtoPerson (int openID)
 
 		if (found)
 		{
-				human = toPerson (buffer);
+				human.toPerson (buffer);
 		}
 		return human;
 }

@@ -2,6 +2,7 @@
 #include <string>
 #include <fstream>
 #include <regex>
+#include <algorithm>
 #include "Person.h"
 
 void Person::setFName (std::string name)
@@ -53,3 +54,34 @@ void Person::setID (std::string file)
 		dataFile.close ();
 		id = std::stoi (buffer.substr (2, 6 )) + 1;
 }
+void Person::toPerson (std::string saveString)
+{
+		std::size_t tempLoc, delimLoc;
+		id = stoi (saveString.substr (2,6));
+
+		delimLoc = saveString.find (";");
+		if (delimLoc == std::string::npos)
+				return;
+		fName = saveString.substr (9, (delimLoc - 9));
+
+		tempLoc = delimLoc + 1;
+		delimLoc = saveString.find (";", tempLoc);
+		if (delimLoc == std::string::npos)
+				return;
+		mName = saveString.substr (tempLoc, (delimLoc - tempLoc));
+
+		tempLoc = delimLoc + 1;
+		delimLoc = saveString.find (";", tempLoc);
+		if (delimLoc == std::string::npos)
+				return;
+		lName = saveString.substr (tempLoc, (delimLoc - tempLoc));
+}
+
+void Person::outPerson ()
+{
+		std::cout << "ID:			" << id << std::endl;
+		std::cout << "First Name:	" << fName << std::endl;
+		std::cout << "Middle Name:	" << mName << std::endl;
+		std::cout << "Last Name:	" << lName << std::endl;
+}
+

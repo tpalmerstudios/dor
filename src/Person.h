@@ -11,10 +11,12 @@ class Person
 				float id;
 
 		public:
+				void toPerson (std::string);
 				void setFName (std::string);
 				void setMName (std::string);
 				void setLName (std::string);
 				void setID (std::string);
+				void outPerson ();
 				void setID (int);
 				int getID ()
 				{ return id; }

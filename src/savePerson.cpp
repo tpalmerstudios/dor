@@ -6,7 +6,6 @@
 #include "Person.h"
 
 Person toPerson (std::string);
-int outPeron (Person);
 int savePerson (Person toSave, std::string filename)
 {
 		// Variable declarations
