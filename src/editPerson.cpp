@@ -11,6 +11,8 @@ bool nameValid (std::string);
 int editPerson (std::string filename)
 {
 		Person human = selectPerson ();
+		if (human.getID () == -1)
+				return -1;
 		std::string fName;
 		std::string mName;
 		std::string lName;

@@ -8,9 +8,19 @@ class Person
 				std::string fName;
 				std::string mName;
 				std::string lName;
+				// Gender, DOB, 
 				float id;
 
 		public:
+				Person ()
+				{
+						fName = mName = lName = "";
+						id = -1;
+				}
+				Person (std::string saveString)
+				{
+						this->toPerson (saveString);
+				}
 				void toPerson (std::string);
 				void setFName (std::string);
 				void setMName (std::string);

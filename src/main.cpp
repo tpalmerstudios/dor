@@ -83,6 +83,9 @@ Person IDtoPerson (int openID)
 		{
 				human.toPerson (buffer);
 		}
+		else
+		{
+		}
 		return human;
 }
 

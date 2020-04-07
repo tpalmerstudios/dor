@@ -13,6 +13,8 @@ Person selectPerson ();
 int deletePerson (std::string filename)
 {
 		Person human = selectPerson ();
+		if (human.getID () == -1)
+				return -1;
 		std::string saveString, line;
 		std::stringstream idStream;
 		std::fstream dataFile;
