@@ -1,6 +1,8 @@
 #include "Person.h"
+#include "Terminal.h"
+#include "dorSettings.h"
 
-int savePerson (Person, std::string);
+int savePerson (Person, dorSettings);
 Person selectPerson ();
 bool nameValid (std::string);
 
@@ -8,9 +10,8 @@ bool nameValid (std::string);
 // of data via selectPerson () and uses the returned Person to show the current data
 // in it and shows a prompt for a user to change the data. Finally it loads savePerson () with that data
 // and returns a 0 upon success or -1 on failure
-int editPerson (std::string filename)
+int editPerson (Person human, dorSettings dor, Terminal out)
 {
-		Person human = selectPerson ();
 		if (human.getID () == -1)
 				return -1;
 		std::string fName;
@@ -35,6 +36,6 @@ int editPerson (std::string filename)
 				human.setLName (lName);
 
 		// Save in file
-		savePerson (human, filename);
+		savePerson (human, dor);
 		return 0;
 }

@@ -1,8 +1,6 @@
 #include "Person.h"
+#include "dorSettings.h"
 #include <fstream> 		//Normal File Operations
-#include <unistd.h> 	//Access to ftrunctat
-#include <sys/stat.h> 	//Access to stat (to find file size)
-#include <sys/types.h>
 #include <vector>
 #include <string>
 #include <sstream>
@@ -10,52 +8,27 @@
 
 Person selectPerson ();
 /// int deletePerson (std::string filename) takes a string that holdsthe name of a file to open. It opens the file and retrieves a selected Person via selectPerson (). It then deletes the entry from the file and truncates the file to correct length. It returns 0 on success and -1 on failure
-int deletePerson (std::string filename)
+int deletePerson (Person human, dorSettings dor)
 {
-		Person human = selectPerson ();
-		if (human.getID () == -1)
-				return -1;
 		std::string saveString, line;
 		std::stringstream idStream;
 		std::fstream dataFile;
 		std::vector <std::string> all;
 		int id, i, j, matches = 0;
 		bool found = false;
-		off_t filesize;
-		struct stat fileData;
-		const char * fileChar = filename.c_str ();
 		size_t stringLength = 0;
 
-		if (stat (fileChar, &fileData))
-				return -1;
-		filesize = fileData.st_size;
-
-		// Create a string that contains the Person data
 		id = human.getID ();
 		idStream << std::fixed << std::setprecision (0) << std::setw (6) << std::setfill ('0') << id;
-		saveString = "#[" + idStream.str () + "]" + human.getFName ();
-		saveString += ";" + human.getMName () + ";" + human.getLName ();
+		saveString = "#[" + idStream.str () + "]" + human.getFName () + ";" + human.getMName () + ";" + human.getLName ();
 
-		// Open the file
-		dataFile.open (filename, std::ios::in);
+		dataFile.open (fileAccess::filename, std::ios::out | std::ios::binary | std::ios::in );
 		if (dataFile.fail ())
 		{
-				dataFile.open (filename, std::ios::out );
-				if (dataFile.fail ())
-				{
-						std::cerr << filename << " could not be opened.\n";
-						return 1;
-				}
-		}
-		dataFile.close ();
-		dataFile.open (filename, std::ios::out | std::ios::binary | std::ios::in );
-		if (dataFile.fail ())
-		{
-				std::cerr << filename << "could not be opened.\n";
-				return 1;
+				std::cerr << fileAccess::filename << "could not be opened.\n";
+				return -1;
 		}
 
-		// Loop through file looking for a match to Person entered
 		for (i = 0; std::getline (dataFile, line); i++)
 		{
 				if (line.find (saveString) == std::string::npos && dataFile)
@@ -87,12 +60,8 @@ int deletePerson (std::string filename)
 		all.erase (all.begin (), all.end ());
 		dataFile.close ();
 
-		// Truncate the file to the size - anything we removed
-		if (truncate (fileChar, filesize - (((stringLength + 1) * matches))) != 0)
-		{
-				std::cerr << "Failure to truncate. Though data may have been deleted.\n";
+		if (dor.shrinkFile ((stringLength + 1) * matches) = -1)
 				return -1;
-		}
 		return 0;
 }
 

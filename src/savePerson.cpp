@@ -2,94 +2,65 @@
 #include <string>
 #include <fstream>
 #include <iomanip>
-#include <regex>
+#include <vector>
 #include "Person.h"
+#include "dorSettings.h"
 
 Person toPerson (std::string);
-int savePerson (Person toSave, std::string filename)
+int savePerson (Person human, dorSettings dor)
 {
-		// Variable declarations
-		std::stringstream cStream;
-		std::regex regexCID;
-		std::string buffer, saveString, tempCurrent;
+		if (human.getID () == -1)
+				return -1;
+
+		std::stringstream idStream;
+		std::string buffer, saveString, idString;
 		std::fstream dataFile;
-		int currentID, ending, nextLine, cursor, i, j;
+		std::string test;
+		int ending, nextLine, cursor, i, j =0;
 		char character;
 
-		// Set up stringstreams with 000000 then add in the ids
-		currentID = toSave.getID ();
-		cStream << std::fixed << std::setprecision (0) << std::setw (6) << std::setfill ('0') << currentID;
+		idStream << std::fixed << std::setprecision (0) << std::setw (6) << std::setfill ('0') << human.getID ();
+		idString = "#[" + idStream.str () + "]";
+		saveString = idString + human.getFName () + ";" + human.getMName () + ";" + human.getLName () + ";\n";
 
-		// Create a string that contains the Person data
-		saveString = "#[" + cStream.str () + "]" + toSave.getFName ();
-		saveString += ";" + toSave.getMName () + ";" + toSave.getLName () + ";\n";
-
-		// ID codes e.g. #[XXXXXX]
-		tempCurrent = (R"(#\[)") + (cStream.str ()) + (R"(\])");
-		regexCID.assign (tempCurrent);
-
-		// Open a file in binary mode. Input and output
-		dataFile.open (filename, std::ios::in);
+		dataFile.open (dor.getFilename (), std::ios::in | std::ios::out | std::ios::binary);
 		if (dataFile.fail ())
-		{
-				dataFile.open (filename, std::ios::out );
-				if (dataFile.fail ())
-				{
-						std::cerr << filename << " could not be opened.\n";
-						return 1;
-				}
-		}
-		dataFile.close ();
-		dataFile.open (filename, std::ios::out | std::ios::binary | std::ios::in );
-		if (dataFile.fail ())
-		{
-				std::cerr << filename << "could not be opened.\n";
-				return 1;
-		}
-		ending = cursor = 0;
+				return -1;
+
 		while (dataFile >> character)
 				ending ++;
-
-		// If the file is way too short
 		if (ending < 9)
 		{
-				dataFile.clear ();
-				dataFile.seekp (0, std::ios::beg);
 				dataFile << saveString;
 				dataFile.close ();
 				return 0;
 		}
-
 		dataFile.clear ();
-		dataFile.seekg (0, std::ios::beg);
-		// If the ID is found in the file
+		dataFile.seekp (0, std::ios::beg);
 		while (std::getline (dataFile, buffer))
 		{
 				nextLine = dataFile.tellp ();
 				nextLine --;
-				if (std::regex_search (buffer, regexCID))
+				if (buffer.find (idString) != std::string::npos)
 				{
-						dataFile.clear ();
+						// If the regex matches the current line. Go to the cursor (which is the end of the previous line)
+						// fill a vector with lines after the found line. go to cursor at the end of previous line
+						// write into the file from that point the entire vector. delete the vector and close the file
 						dataFile.seekp (cursor);
 						std::vector<std::string> fileLine {""};
 						for (i = 0; std::getline (dataFile, fileLine[i]); i++)
-						{
 								fileLine.push_back ("");
-						}
 						dataFile.clear ();
 						dataFile.seekp (cursor);
 						dataFile << saveString;
 						for (j = 0; j > i; j++)
-						{
 								dataFile << fileLine [j];
-						}
 						fileLine.erase (fileLine.begin (), fileLine.end ());
 						dataFile.close ();
 						return 0;
 				}
 				cursor = dataFile.tellp ();
 		}
-		// Go to the end of the file and add data there
 		dataFile.clear ();
 		dataFile.seekp (0, std::ios::end);
 		dataFile << saveString;
