@@ -1,0 +1,45 @@
+\hypertarget{delete_person_8cpp}{}\doxysection{src/delete\+Person.cpp File Reference}
+\label{delete_person_8cpp}\index{src/deletePerson.cpp@{src/deletePerson.cpp}}
+{\ttfamily \#include \char`\"{}Person.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$iomanip$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_person}{Person}} \mbox{\hyperlink{delete_person_8cpp_a8deda377eba8966b317946594700ad59}{select\+Person}} ()
+\item 
+int \mbox{\hyperlink{delete_person_8cpp_a07b505926408008c9631395e664036b0}{delete\+Person}} (std\+::string filename)
+\begin{DoxyCompactList}\small\item\em int delete\+Person (std\+::string filename) takes a string that holdsthe name of a file to open. It opens the file and retrieves a selected \mbox{\hyperlink{class_person}{Person}} via select\+Person (). It then deletes the entry from the file and truncates the file to correct length. It returns 0 on success and -\/1 on failure \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{delete_person_8cpp_a07b505926408008c9631395e664036b0}\label{delete_person_8cpp_a07b505926408008c9631395e664036b0}} 
+\index{deletePerson.cpp@{deletePerson.cpp}!deletePerson@{deletePerson}}
+\index{deletePerson@{deletePerson}!deletePerson.cpp@{deletePerson.cpp}}
+\doxysubsubsection{\texorpdfstring{deletePerson()}{deletePerson()}}
+{\footnotesize\ttfamily int delete\+Person (\begin{DoxyParamCaption}\item[{std\+::string}]{filename }\end{DoxyParamCaption})}
+
+
+
+int delete\+Person (std\+::string filename) takes a string that holdsthe name of a file to open. It opens the file and retrieves a selected \mbox{\hyperlink{class_person}{Person}} via select\+Person (). It then deletes the entry from the file and truncates the file to correct length. It returns 0 on success and -\/1 on failure 
+
+
+
+Definition at line 13 of file delete\+Person.\+cpp.
+
+\mbox{\Hypertarget{delete_person_8cpp_a8deda377eba8966b317946594700ad59}\label{delete_person_8cpp_a8deda377eba8966b317946594700ad59}} 
+\index{deletePerson.cpp@{deletePerson.cpp}!selectPerson@{selectPerson}}
+\index{selectPerson@{selectPerson}!deletePerson.cpp@{deletePerson.cpp}}
+\doxysubsubsection{\texorpdfstring{selectPerson()}{selectPerson()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_person}{Person}} select\+Person (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 9 of file select\+Person.\+cpp.
+

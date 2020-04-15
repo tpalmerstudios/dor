@@ -17,12 +17,15 @@ Person selectPerson (dorSettings dor, Terminal out)
 		bool valid = false;
 		while (selection == "")
 		{
+				std::cout << out.color (dor.getFG (), dor.getBG ()) << out.clearscr () << "DOR - DATA ORGANIZER\n\n";
 				std::cout << "Enter ID or Search for a person? ";
 				std::cin >> selection;
 				if (selection == "id" || selection == "ID")
 				{
 						while (!valid)
 						{
+								std::cout << out.clearscr () << "DOR - DATA ORGANIZER\n\n";
+								std::cout << "Enter ID or Search for a person? ID\n";
 								std::cout << "Enter ID: ";
 								std::cin >> query;
 								// Great little snippet from stack overflow to test if all digits are numeric

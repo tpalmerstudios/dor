@@ -1,5 +1,6 @@
 #include "Person.h"
 #include "dorSettings.h"
+#include "Terminal.h"
 #include <fstream> 		//Normal File Operations
 #include <vector>
 #include <string>
@@ -8,7 +9,8 @@
 
 Person selectPerson ();
 /// int deletePerson (std::string filename) takes a string that holdsthe name of a file to open. It opens the file and retrieves a selected Person via selectPerson (). It then deletes the entry from the file and truncates the file to correct length. It returns 0 on success and -1 on failure
-int deletePerson (Person human, dorSettings dor)
+
+int deletePerson (Person human, dorSettings dor, Terminal out)
 {
 		std::string saveString, line;
 		std::stringstream idStream;
@@ -22,10 +24,10 @@ int deletePerson (Person human, dorSettings dor)
 		idStream << std::fixed << std::setprecision (0) << std::setw (6) << std::setfill ('0') << id;
 		saveString = "#[" + idStream.str () + "]" + human.getFName () + ";" + human.getMName () + ";" + human.getLName ();
 
-		dataFile.open (fileAccess::filename, std::ios::out | std::ios::binary | std::ios::in );
+		dataFile.open (dor.getFilename (), std::ios::out | std::ios::binary | std::ios::in);
 		if (dataFile.fail ())
 		{
-				std::cerr << fileAccess::filename << "could not be opened.\n";
+				std::cerr << dor.getFilename () << "could not be opened.\n";
 				return -1;
 		}
 
@@ -60,7 +62,7 @@ int deletePerson (Person human, dorSettings dor)
 		all.erase (all.begin (), all.end ());
 		dataFile.close ();
 
-		if (dor.shrinkFile ((stringLength + 1) * matches) = -1)
+		if (dor.shrinkFile ((stringLength + 1) * matches) == -1)
 				return -1;
 		return 0;
 }

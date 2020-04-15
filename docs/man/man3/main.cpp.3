@@ -1,0 +1,100 @@
+.TH "src/main.cpp" 3 "Wed Apr 8 2020" "DOR" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/main.cpp
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <iostream>\fP
+.br
+\fC#include <string>\fP
+.br
+\fC#include <fstream>\fP
+.br
+\fC#include <iomanip>\fP
+.br
+\fC#include <sstream>\fP
+.br
+\fC#include <regex>\fP
+.br
+\fC#include 'Person\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBdeletePerson\fP (std::string)"
+.br
+.RI "int deletePerson (std::string filename) takes a string that holdsthe name of a file to open\&. It opens the file and retrieves a selected \fBPerson\fP via selectPerson ()\&. It then deletes the entry from the file and truncates the file to correct length\&. It returns 0 on success and -1 on failure "
+.ti -1c
+.RI "int \fBsavePerson\fP (\fBPerson\fP, std::string)"
+.br
+.ti -1c
+.RI "int \fBeditPerson\fP (std::string)"
+.br
+.ti -1c
+.RI "int \fBnewPerson\fP ()"
+.br
+.ti -1c
+.RI "int \fBcallsSet\fP ()"
+.br
+.ti -1c
+.RI "\fBPerson\fP \fBIDtoPerson\fP (int)"
+.br
+.ti -1c
+.RI "\fBPerson\fP \fBselectPerson\fP ()"
+.br
+.ti -1c
+.RI "int \fBmain\fP ()"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "\fBPerson\fP \fBsearchPerson\fP (std::string)"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "int callsSet ()"
+
+.SS "int deletePerson (std::string)"
+
+.PP
+int deletePerson (std::string filename) takes a string that holdsthe name of a file to open\&. It opens the file and retrieves a selected \fBPerson\fP via selectPerson ()\&. It then deletes the entry from the file and truncates the file to correct length\&. It returns 0 on success and -1 on failure 
+.PP
+Definition at line 13 of file deletePerson\&.cpp\&.
+.SS "int editPerson (std::string)"
+
+.PP
+Definition at line 11 of file editPerson\&.cpp\&.
+.SS "\fBPerson\fP IDtoPerson (int openID)"
+
+.PP
+Definition at line 52 of file main\&.cpp\&.
+.SS "int main ()"
+
+.PP
+Definition at line 19 of file main\&.cpp\&.
+.SS "int newPerson ()"
+
+.PP
+Definition at line 6 of file newPerson\&.cpp\&.
+.SS "int savePerson (\fBPerson\fP, std::string)"
+
+.PP
+Definition at line 9 of file savePerson\&.cpp\&.
+.SS "\fBPerson\fP selectPerson ()"
+
+.PP
+Definition at line 9 of file selectPerson\&.cpp\&.
+.SH "Variable Documentation"
+.PP 
+.SS "\fBPerson\fP searchPerson(std::string)"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for DOR from the source code\&.

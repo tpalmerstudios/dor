@@ -1,0 +1,81 @@
+.TH "intQueue" 3 "Wed Apr 8 2020" "DOR" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+intQueue
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <intQueue\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBintQueue\fP (int)"
+.br
+.ti -1c
+.RI "\fBintQueue\fP (const \fBintQueue\fP &)"
+.br
+.ti -1c
+.RI "\fB~intQueue\fP ()"
+.br
+.ti -1c
+.RI "void \fBenqueue\fP (int)"
+.br
+.ti -1c
+.RI "void \fBdequeue\fP (int &)"
+.br
+.ti -1c
+.RI "bool \fBisEmpty\fP () const"
+.br
+.ti -1c
+.RI "bool \fBisFull\fP () const"
+.br
+.ti -1c
+.RI "void \fBclear\fP ()"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Definition at line 4 of file intQueue\&.h\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "intQueue::intQueue (int size)"
+
+.PP
+Definition at line 5 of file intQueue\&.cpp\&.
+.SS "intQueue::intQueue (const \fBintQueue\fP & obj)"
+
+.PP
+Definition at line 14 of file intQueue\&.cpp\&.
+.SS "intQueue::~intQueue ()"
+
+.PP
+Definition at line 27 of file intQueue\&.cpp\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "void intQueue::clear ()"
+
+.PP
+Definition at line 79 of file intQueue\&.cpp\&.
+.SS "void intQueue::dequeue (int & num)"
+
+.PP
+Definition at line 44 of file intQueue\&.cpp\&.
+.SS "void intQueue::enqueue (int num)"
+
+.PP
+Definition at line 32 of file intQueue\&.cpp\&.
+.SS "bool intQueue::isEmpty () const"
+
+.PP
+Definition at line 56 of file intQueue\&.cpp\&.
+.SS "bool intQueue::isFull () const"
+
+.PP
+Definition at line 67 of file intQueue\&.cpp\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for DOR from the source code\&.

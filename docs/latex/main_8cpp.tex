@@ -1,0 +1,125 @@
+\hypertarget{main_8cpp}{}\doxysection{src/main.cpp File Reference}
+\label{main_8cpp}\index{src/main.cpp@{src/main.cpp}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$iomanip$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$regex$>$}\newline
+{\ttfamily \#include \char`\"{}Person.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{main_8cpp_a3c6633382b6c3d9d422ebcddbe9837bc}{delete\+Person}} (std\+::string)
+\begin{DoxyCompactList}\small\item\em int delete\+Person (std\+::string filename) takes a string that holdsthe name of a file to open. It opens the file and retrieves a selected \mbox{\hyperlink{class_person}{Person}} via select\+Person (). It then deletes the entry from the file and truncates the file to correct length. It returns 0 on success and -\/1 on failure \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{main_8cpp_aede791cbcc7fedf1d77cb5146ab62b47}{save\+Person}} (\mbox{\hyperlink{class_person}{Person}}, std\+::string)
+\item 
+int \mbox{\hyperlink{main_8cpp_a7be8f51e1685191024257312da4c2fb5}{edit\+Person}} (std\+::string)
+\item 
+int \mbox{\hyperlink{main_8cpp_a319165358bd2688bce7d9382d4edd254}{new\+Person}} ()
+\item 
+int \mbox{\hyperlink{main_8cpp_af03a41db57dcff7f5689878b648ea6a1}{calls\+Set}} ()
+\item 
+\mbox{\hyperlink{class_person}{Person}} \mbox{\hyperlink{main_8cpp_a3cfe164b373ab219104822ac2b0fd6c2}{I\+Dto\+Person}} (int)
+\item 
+\mbox{\hyperlink{class_person}{Person}} \mbox{\hyperlink{main_8cpp_a8deda377eba8966b317946594700ad59}{select\+Person}} ()
+\item 
+int \mbox{\hyperlink{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_person}{Person}} \mbox{\hyperlink{main_8cpp_a867fe6ffca6e268d7a95b72d901d24cc}{search\+Person}} (std\+::string)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{main_8cpp_af03a41db57dcff7f5689878b648ea6a1}\label{main_8cpp_af03a41db57dcff7f5689878b648ea6a1}} 
+\index{main.cpp@{main.cpp}!callsSet@{callsSet}}
+\index{callsSet@{callsSet}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{callsSet()}{callsSet()}}
+{\footnotesize\ttfamily int calls\+Set (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{main_8cpp_a3c6633382b6c3d9d422ebcddbe9837bc}\label{main_8cpp_a3c6633382b6c3d9d422ebcddbe9837bc}} 
+\index{main.cpp@{main.cpp}!deletePerson@{deletePerson}}
+\index{deletePerson@{deletePerson}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{deletePerson()}{deletePerson()}}
+{\footnotesize\ttfamily int delete\+Person (\begin{DoxyParamCaption}\item[{std\+::string}]{ }\end{DoxyParamCaption})}
+
+
+
+int delete\+Person (std\+::string filename) takes a string that holdsthe name of a file to open. It opens the file and retrieves a selected \mbox{\hyperlink{class_person}{Person}} via select\+Person (). It then deletes the entry from the file and truncates the file to correct length. It returns 0 on success and -\/1 on failure 
+
+
+
+Definition at line 13 of file delete\+Person.\+cpp.
+
+\mbox{\Hypertarget{main_8cpp_a7be8f51e1685191024257312da4c2fb5}\label{main_8cpp_a7be8f51e1685191024257312da4c2fb5}} 
+\index{main.cpp@{main.cpp}!editPerson@{editPerson}}
+\index{editPerson@{editPerson}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{editPerson()}{editPerson()}}
+{\footnotesize\ttfamily int edit\+Person (\begin{DoxyParamCaption}\item[{std\+::string}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 11 of file edit\+Person.\+cpp.
+
+\mbox{\Hypertarget{main_8cpp_a3cfe164b373ab219104822ac2b0fd6c2}\label{main_8cpp_a3cfe164b373ab219104822ac2b0fd6c2}} 
+\index{main.cpp@{main.cpp}!IDtoPerson@{IDtoPerson}}
+\index{IDtoPerson@{IDtoPerson}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{IDtoPerson()}{IDtoPerson()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_person}{Person}} I\+Dto\+Person (\begin{DoxyParamCaption}\item[{int}]{open\+ID }\end{DoxyParamCaption})}
+
+
+
+Definition at line 52 of file main.\+cpp.
+
+\mbox{\Hypertarget{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}} 
+\index{main.cpp@{main.cpp}!main@{main}}
+\index{main@{main}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 19 of file main.\+cpp.
+
+\mbox{\Hypertarget{main_8cpp_a319165358bd2688bce7d9382d4edd254}\label{main_8cpp_a319165358bd2688bce7d9382d4edd254}} 
+\index{main.cpp@{main.cpp}!newPerson@{newPerson}}
+\index{newPerson@{newPerson}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{newPerson()}{newPerson()}}
+{\footnotesize\ttfamily int new\+Person (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 6 of file new\+Person.\+cpp.
+
+\mbox{\Hypertarget{main_8cpp_aede791cbcc7fedf1d77cb5146ab62b47}\label{main_8cpp_aede791cbcc7fedf1d77cb5146ab62b47}} 
+\index{main.cpp@{main.cpp}!savePerson@{savePerson}}
+\index{savePerson@{savePerson}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{savePerson()}{savePerson()}}
+{\footnotesize\ttfamily int save\+Person (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_person}{Person}}}]{,  }\item[{std\+::string}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 9 of file save\+Person.\+cpp.
+
+\mbox{\Hypertarget{main_8cpp_a8deda377eba8966b317946594700ad59}\label{main_8cpp_a8deda377eba8966b317946594700ad59}} 
+\index{main.cpp@{main.cpp}!selectPerson@{selectPerson}}
+\index{selectPerson@{selectPerson}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{selectPerson()}{selectPerson()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_person}{Person}} select\+Person (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 9 of file select\+Person.\+cpp.
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{main_8cpp_a867fe6ffca6e268d7a95b72d901d24cc}\label{main_8cpp_a867fe6ffca6e268d7a95b72d901d24cc}} 
+\index{main.cpp@{main.cpp}!searchPerson@{searchPerson}}
+\index{searchPerson@{searchPerson}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{searchPerson}{searchPerson}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_person}{Person}} search\+Person(std\+::string)}
+
