@@ -27,7 +27,7 @@
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">DOR
    </div>
-   <div id="projectbrief">Data Organizer</div>
+   <div id="projectbrief">DATA ORGANIZER</div>
   </td>
  </tr>
  </tbody>
@@ -131,13 +131,18 @@ $(document).ready(function(){initNavTree('select_person_8cpp_source.html',''); i
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                                std::cin &gt;&gt; query;</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                                <span class="keywordflow">if</span> (<a class="code" href="select_person_8cpp.html#af6db18f9590a484acc66fdd9f16e944c">searchValid</a> (query) &amp;&amp; (valid = <span class="keyword">true</span>))</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                                        human = <a class="code" href="select_person_8cpp.html#a6c75d2e54ced9bfcc4f30e8868e5989f">searchPerson</a> (query, dor, out);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                        }</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                }</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                        selection = <span class="stringliteral">&quot;&quot;</span>;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        }</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keywordflow">return</span> human;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;}</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                                <span class="keywordflow">if</span> (human.<a class="code" href="class_person.html#ae3a41c2e9419111822905800e5061f0c">getID</a> () == -1)</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                                {</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                                        std::cout &lt;&lt; <span class="stringliteral">&quot;Issue with item.\n&quot;</span>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                                        std::cin &gt;&gt; selection;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                                }</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                        }</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                }</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                        selection = <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        }</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordflow">return</span> human;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="aclass_person_html"><div class="ttname"><a href="class_person.html">Person</a></div><div class="ttdef"><b>Definition:</b> <a href="_person_8h_source.html#l00011">Person.h:11</a></div></div>
@@ -155,6 +160,7 @@ $(document).ready(function(){initNavTree('select_person_8cpp_source.html',''); i
 <div class="ttc" id="ador_settings_8h_html"><div class="ttname"><a href="dor_settings_8h.html">dorSettings.h</a></div></div>
 <div class="ttc" id="aselect_person_8cpp_html_a6c75d2e54ced9bfcc4f30e8868e5989f"><div class="ttname"><a href="select_person_8cpp.html#a6c75d2e54ced9bfcc4f30e8868e5989f">searchPerson</a></div><div class="ttdeci">Person searchPerson(std::string, dorSettings, Terminal)</div><div class="ttdef"><b>Definition:</b> <a href="search_person_8cpp_source.html#l00013">searchPerson.cpp:13</a></div></div>
 <div class="ttc" id="aclass_terminal_html"><div class="ttname"><a href="class_terminal.html">Terminal</a></div><div class="ttdef"><b>Definition:</b> <a href="_terminal_8h_source.html#l00005">Terminal.h:5</a></div></div>
+<div class="ttc" id="aclass_person_html_ae3a41c2e9419111822905800e5061f0c"><div class="ttname"><a href="class_person.html#ae3a41c2e9419111822905800e5061f0c">Person::getID</a></div><div class="ttdeci">int getID()</div><div class="ttdef"><b>Definition:</b> <a href="_person_8h_source.html#l00103">Person.h:103</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

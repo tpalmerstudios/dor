@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['car_128',['car',['../structcar.html',1,'']]]
+  ['dorsettings_126',['dorSettings',['../classdor_settings.html',1,'']]]
 ];

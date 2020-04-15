@@ -29,9 +29,14 @@ int savePerson (Person human, dorSettings dor)
 
 		while (dataFile >> character)
 				ending ++;
-		if (ending < 9)
+		if (ending < 10)
 		{
 				dataFile << saveString;
+				if (dataFile.fail ())
+				{
+						dataFile.close ();
+						return -1;
+				}
 				dataFile.close ();
 				return 0;
 		}
@@ -54,9 +59,17 @@ int savePerson (Person human, dorSettings dor)
 						dataFile.seekp (cursor);
 						dataFile << saveString;
 						for (j = 0; j > i; j++)
+						{
 								dataFile << fileLine [j];
-						fileLine.erase (fileLine.begin (), fileLine.end ());
+								std::cout << fileLine [j];
+						}
+						if (dataFile.fail ())
+						{
+								dataFile.close ();
+								return -1;
+						}
 						dataFile.close ();
+						fileLine.erase (fileLine.begin (), fileLine.end ());
 						return 0;
 				}
 				cursor = dataFile.tellp ();
@@ -64,6 +77,11 @@ int savePerson (Person human, dorSettings dor)
 		dataFile.clear ();
 		dataFile.seekp (0, std::ios::end);
 		dataFile << saveString;
+		if (dataFile.fail ())
+		{
+				dataFile.close ();
+				return -1;
+		}
 		dataFile.close ();
 		return 0;
 }

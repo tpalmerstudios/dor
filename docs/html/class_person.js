@@ -1,6 +1,5 @@
 var class_person =
 [
-    [ "Birth", "class_person_1_1_birth.html", null ],
     [ "Person", "class_person.html#a0397c6f89fafc12e738923f612bc41a3", null ],
     [ "Person", "class_person.html#a67a34dd0b2956c920379a098547148da", null ],
     [ "getFName", "class_person.html#a6d05ffda03c0216aee218837e4b2de86", null ],

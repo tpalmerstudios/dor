@@ -35,7 +35,6 @@ int editPerson (Person human, dorSettings dor, Terminal out)
 		if (lName != "-" && nameValid (lName))
 				human.setLName (lName);
 
-		// Save in file
 		savePerson (human, dor);
 		return 0;
 }

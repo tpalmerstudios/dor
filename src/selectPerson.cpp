@@ -43,6 +43,11 @@ Person selectPerson (dorSettings dor, Terminal out)
 								std::cin >> query;
 								if (searchValid (query) && (valid = true))
 										human = searchPerson (query, dor, out);
+								if (human.getID () == -1)
+								{
+										std::cout << "Issue with item.\n";
+										std::cin >> selection;
+								}
 						}
 				}
 				else

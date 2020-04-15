@@ -88,7 +88,7 @@ int main ()
 				{
 						if (editPerson (selectPerson (dor, out), dor, out) == -1)
 						{
-								std::cerr << out.clearscr () << "Unable to view any entries.\n";
+								//std::cerr << out.clearscr () << "Unable to view any entries.\n";
 								return -1;
 						}
 				}

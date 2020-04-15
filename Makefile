@@ -9,7 +9,7 @@ CLASSES =	libs/Person.h libs/dorSettings.h libs/Terminal.h
 	$(CXX) $(CXXFLAGS) $@.cpp -o $@
 
 dor: $(OBJECTS) $(CLASSES)
-	$(CXX) $(CXXFLAGS) $(OBJECTS) -o src/$@
+	$(CXX) $(CXXFLAGS) $(OBJECTS) -o $@
 	doxygen Doxyfile
 
 clean:

@@ -23,9 +23,7 @@ for the JavaScript code in this file
 var NAVTREE =
 [
   [ "DOR", "index.html", [
-    [ "networkProjects - DOR", "md__r_e_a_d_m_e.html", [
-      [ "Install", "md__r_e_a_d_m_e.html#autotoc_md1", null ]
-    ] ],
+    [ "README", "md__r_e_a_d_m_e.html", null ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
@@ -49,7 +47,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_birth_8h.html"
+"_i_dto_person_8cpp.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
