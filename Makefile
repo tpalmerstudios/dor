@@ -1,5 +1,5 @@
 CXX		=	g++
-CXXFLAGS=	-Wall -I /home/user/networkProjects/libs
+CXXFLAGS=	-Wall -std=c++17 -g -I /home/user/networkProjects/libs
 OBJECTS	=	src/IDtoPerson.o src/dor.o src/validation.o src/deletePerson.o src/editPerson.o src/newPerson.o src/selectPerson.o src/savePerson.o src/Person.o src/searchPerson.o 
 CLASSES =	libs/Person.h libs/dorSettings.h libs/Terminal.h
 
@@ -8,12 +8,15 @@ CLASSES =	libs/Person.h libs/dorSettings.h libs/Terminal.h
 .cpp:
 	$(CXX) $(CXXFLAGS) $@.cpp -o $@
 
-dor: $(OBJECTS) $(CLASSES)
+dor: $(OBJECTS) $(CLASSES) 
 	$(CXX) $(CXXFLAGS) $(OBJECTS) -o $@
+
+docs: $(OBJECTS) $(CLASSES)
 	doxygen Doxyfile
 
 clean:
-	-rm src/*.o src/dor
+	-rm src/*.o dor
+	-rm -r docs/*
 
 temp:
 	-rm src/*.o

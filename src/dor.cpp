@@ -16,7 +16,7 @@ int main ()
 {
 		Terminal out;
 		dorSettings dor;
-		dor.setFilename (".logfile.txt");
+		dor.setFilename ("logfile.txt");
 		dor.setFG (97);
 		dor.setBG (44);
 		dor.setHiFG (34);

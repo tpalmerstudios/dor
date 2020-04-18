@@ -1,7 +1,5 @@
 #include <string>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/stat.h>
+#include <filesystem>
 #include "Person.h"
 
 #ifndef DOR_SETTINGS
@@ -12,9 +10,7 @@ private:
 		std::string filename;
 		short int fg, bg, hiFG, hiBG;
 		bool basicMode;
-		off_t filesize;
-		struct stat filedata;
-		const char *fileChar = filename.c_str ();
+		int filesize;
 public:
 		bool getBasicMode ()
 		{ return basicMode; }
@@ -40,11 +36,16 @@ public:
 		{ hiFG = colorCode; }
 		void setHiBG (short int colorCode)
 		{ hiBG = colorCode; }
-		int shrinkFile (int stringSize)
+		int getFilesize ()
 		{
-				if (truncate (fileChar, filesize - stringSize) != 0)
-						return -1;
-				return 0;
+				std::filesystem::path filePath = std::filesystem::current_path () / filename;
+				filesize = std::filesystem::file_size (filePath);
+				return filesize;
+		}
+		void shrinkFile (int shrinkSize)
+		{
+				std::filesystem::path filePath = std::filesystem::current_path () / filename;
+				std::filesystem::resize_file (filePath, (getFilesize () - shrinkSize));
 		}
 };
 #endif

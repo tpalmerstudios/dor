@@ -62,8 +62,7 @@ int deletePerson (Person human, dorSettings dor, Terminal out)
 		all.erase (all.begin (), all.end ());
 		dataFile.close ();
 
-		if (dor.shrinkFile ((stringLength + 1) * matches) == -1)
-				return -1;
+		dor.shrinkFile ((stringLength + 1) * matches);
 		return 0;
 }
 
