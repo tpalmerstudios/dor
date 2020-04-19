@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<person>
+		<id>000000</id>
+		<name>
+				<first_name>Timothy</first_name>
+				<middle_name>Lawrence</middle_name>
+				<last_name>Palmer</last_name>
+		</name>
+		<name>
+				<first_name>Cool Nickname</first_name>
+		</name>
+		<date>
+				<date_string>18021998</date_string>
+				<date_note>Birthday</date_note>
+		</date>
+		<date>
+				<date_string>07012019</date_string>
+				<date_note>Anniversary with Sarah Parker</date_note>
+				<link>000001</link>
+		</date>
+</person>
