@@ -46,7 +46,6 @@ Person selectPerson (dorSettings dor, Terminal out)
 								if (human.getID () == -1)
 								{
 										std::cout << "Issue with item.\n";
-										std::cin >> selection;
 								}
 						}
 				}

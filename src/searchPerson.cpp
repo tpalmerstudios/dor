@@ -17,12 +17,12 @@ Person searchPerson (std::string query, dorSettings dor, Terminal out)
 		dataFile.open (dor.getFilename (), std::ios::binary);
 		if (dataFile.fail ())
 		{
-				std::cout << "File Open Issue.\n";
+				std::cerr << "File Open Issue.\n";
 				return human;
 		}
 		if (!searchValid (query))
 		{
-				std::cout << "Search Query Invalid.\n";
+				std::cerr << "Search Query Invalid.\n";
 				return human;
 		}
 		int results = 0;

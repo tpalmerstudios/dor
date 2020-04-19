@@ -11,11 +11,10 @@
 class Person
 {
 		private:
+				float id;
 				std::string fName; /// A Persons first name (or common name)
 				std::string mName; /// A Persons middle name
 				std::string lName; /// A Persons last name (or surname)
-				// Gender, DOB, 
-				float id;
 
 		public:
 				/*

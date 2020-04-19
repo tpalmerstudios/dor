@@ -92,7 +92,6 @@ int savePerson (Person human, dorSettings dor)
 								fileLine.erase (fileLine.begin (), fileLine.end ());
 								if (shorten > 0)
 										dor.shrinkFile (shorten);
-								std::cin >> test;
 								return 0;
 						}
 				}

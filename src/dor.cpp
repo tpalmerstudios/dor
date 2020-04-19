@@ -102,12 +102,15 @@ int main ()
 								return -1;
 						}
 				}
+				else if (query == ":q" || query == "x" || query == "X" || query == "q" || query == "Q")
+				{
+						return 0;
+				}
 				else
 				{
 						if (searchPerson (query, dor, out).getID () == -1)
 						{
 								std::cerr << out.clearscr () << "Unable to find a result.\n";
-								return -1;
 						}
 				}
 		}
